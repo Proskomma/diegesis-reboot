@@ -60,8 +60,6 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
     });
     const selectedDocSets = queryState.data.docSets?.filter((ds) => displayFlags[displayMode]?.allDocSets || ds.id === navState.docSetId) || [];
 
-    // console.log(query)
-    // console.log(queryState.data.docSets?.filter((ds) => displayFlags[displayMode].allDocSets || ds.id === navState.docSetId)[0]?.document.mainSequence.blocks.map(b => b.text))
     return (
         <IonPage>
             <PageHeader
@@ -111,9 +109,8 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
                         parseResult={parseResult}
                         docSets={selectedDocSets}
                         displayFlags={displayFlags}
-                        displayMode={displayMode}
+                        displayMode={displayMode} 
                         navState={navState}
-                        allDocSets={displayFlags[displayMode].allDocSets}
                     />
                 </IonGrid>
             </IonContent>

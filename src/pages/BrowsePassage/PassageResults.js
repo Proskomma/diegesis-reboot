@@ -4,9 +4,10 @@ import {IonCol, IonRow} from '@ionic/react';
 import PassageByVersions from "./PassageByVersions";
 import PassageByVerse from "./PassageByVerse";
 import PassageByVersion from "./PassageByVersion";
-import PkDataAsJson from "../../components/PkDataAsJson";
+import PassageByBlocks from "./PassageByBlocks";
+// import PkDataAsJson from "../../components/PkDataAsJson";
 
-export default function PassageResults({reference, parseResult, docSets, displayFlags}) {
+export default function PassageResults({reference, parseResult, docSets, displayFlags, displayMode, navState}) {
     const cvArray = docSets[0]?.document?.cv.map(v => v.scopeLabels) || [];
 
     if (reference === '') {
@@ -33,17 +34,14 @@ export default function PassageResults({reference, parseResult, docSets, display
                 Verse not found!
             </IonCol>
         </IonRow>;
-    } else if (displayFlags.byBlock) {
-        return <PkDataAsJson data={docSets} />
-    } else {    // by Verse
-         if (!displayFlags.allDocSets && !displayFlags.groupVerses){
-             console.log('PassageByVersion');
+    } else if (displayFlags[displayMode].byBlock) {
+        return <PassageByBlocks docSets={docSets} displayFlags={displayFlags} displayMode={displayMode} navState={navState} />;
+    }   else {    // by Verse
+         if (!displayFlags[displayMode].allDocSets && !displayFlags[displayMode].groupVerses){
             return docSets.map((ds, n) => <PassageByVersion docSet={ds} keyPrefix={n} key={n} />);
-        } else if (displayFlags.allDocSets && !displayFlags.groupVerses) {
-             console.log('PassageByVersions');
+        } else if (displayFlags[displayMode].allDocSets && !displayFlags[displayMode].groupVerses) {
             return <PassageByVersions docSets={docSets} />;
-        } else if(displayFlags.allDocSets && displayFlags.groupVerses){
-             console.log('PassageByVerse');
+        } else if(displayFlags[displayMode].allDocSets && displayFlags[displayMode].groupVerses){
             return <PassageByVerse cvArray={cvArray} docSets={docSets} />;
         } else {
             return null;
@@ -56,4 +54,6 @@ PassageResults.propTypes = {
     parseResult: PropTypes.object.isRequired,
     docSets: PropTypes.array.isRequired,
     displayFlags: PropTypes.object.isRequired,
+    displayMode: PropTypes.string.isRequired,
+    navState: PropTypes.object.isRequired,
 };

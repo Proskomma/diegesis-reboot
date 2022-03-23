@@ -8,15 +8,14 @@ export default function PassageByVersions({docSets}) {
     return docSets?.map(
             (ds, n) => <div key={n}><IonRow>
                         <IonCol>
-                            <IonTitle>Foo {ds.id}</IonTitle>
+                            <IonTitle>{ds.id}</IonTitle>
                         </IonCol>
                     </IonRow>
-                    <PassageByVersion key={n} docSet={ds} />
+                    <PassageByVersion docSet={ds} keyPrefix={n} key={n} />
             </div>
         );
 }
 
  PassageByVersions.propTypes = {
      docSets: PropTypes.array.isRequired,
-     keyPrefix: PropTypes.number.isRequired,
  };
