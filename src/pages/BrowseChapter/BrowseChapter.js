@@ -2,7 +2,7 @@ import React from "react";
 import {useQuery} from "proskomma-react-hooks";
 import PropTypes from "prop-types";
 import {IonCol, IonContent, IonGrid, IonPage, IonRow} from '@ionic/react';
-
+import FormattedParagraph from "./FormattedParagraph";
 import PageHeader from "../../components/PageHeader";
 
 import "./BrowseChapter.css";
@@ -36,21 +36,6 @@ export default function BrowseChapter({pkState, navState, setNavState, catalog})
         verbose,
     });
 
-    const renderParagraphContents = b => b.items.map((i, n) => {
-            if (i.type === 'token') {
-                return <span className={'c' + n} key={n}>{i.payload}</span>;
-            } else if (i.type === 'scope' && i.subType === 'start' && i.payload.startsWith('verses/')) {
-                return <span className='verse' key={n}>{i.payload.split('/')[1]}</span>;
-            }
-        }
-    );
-
-    const renderBlock = (b, n) => {
-        return <p className={b.scopeLabels[0].split('/')[1]} key={n}>
-            {renderParagraphContents(b)}
-        </p>
-    };
-
     return (
         <IonPage>
             <PageHeader title="Browse Chapter" navState={navState} setNavState={setNavState} catalog={catalog} />
@@ -59,9 +44,8 @@ export default function BrowseChapter({pkState, navState, setNavState, catalog})
                     <IonRow>
                         <IonCol>
                             {
-                                queryState.data.docSet &&
-                                queryState.data.docSet.document.mainSequence.blocks
-                                    .map((b, n) => renderBlock(b, n))
+                                queryState.data.docSet?.document?.mainSequence?.blocks
+                                    .map((b, n) => <FormattedParagraph block={b} n={n} key={n} />)
                             }
                         </IonCol>
                     </IonRow>
