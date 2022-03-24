@@ -52,25 +52,27 @@ export default function Versions({navState, setNavState, catalog, catalogErrors}
             <PageHeader title="List Versions" />
             <IonContent fullscreen>
                 <IonList>
-                    <IonRow>
-                        <IonCol>
-                            <IonTitle>{`${catalog.nDocuments} Bible Books in ${catalog.nDocSets} Bibles`}</IonTitle>
-                        </IonCol>
-                    </IonRow>
-                    <IonRow>
-                        <IonCol>
-                            <IonAccordionGroup expand="inset" value={navState.docSetId}>
-                                {catalog.docSets && catalog.docSets.map((ds, n) => makeAccordion(ds, n))}
-                            </IonAccordionGroup>
-                        </IonCol>
-                    </IonRow>
-                    {catalogErrors && catalogErrors.length > 0 && (
+                    <IonItem>
                         <IonRow>
                             <IonCol>
-                                <PkErrors errors={catalogErrors} />
+                                <IonTitle>{`${catalog.nDocuments} Bible Books in ${catalog.nDocSets} Bibles`}</IonTitle>
                             </IonCol>
                         </IonRow>
-                    )}
+                        <IonRow>
+                            <IonCol>
+                                <IonAccordionGroup expand="inset" value={navState.docSetId}>
+                                    {catalog.docSets && catalog.docSets.map((ds, n) => makeAccordion(ds, n))}
+                                </IonAccordionGroup>
+                            </IonCol>
+                        </IonRow>
+                        {catalogErrors && catalogErrors.length > 0 && (
+                            <IonRow>
+                                <IonCol>
+                                    <PkErrors errors={catalogErrors} />
+                                </IonCol>
+                            </IonRow>
+                        )}
+                    </IonItem>
                 </IonList>
             </IonContent>
         </IonPage>
