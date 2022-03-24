@@ -101,7 +101,7 @@ export default function Print({pkState, navState, setNavState, catalog}) {
             <IonContent>
                 <IonGrid>
                     <IonRow>
-                        <IonCol>
+                        <IonCol size={12}>
                             <IonInput
                                 class="fullWidthInput"
                                 size={100}
@@ -118,7 +118,7 @@ export default function Print({pkState, navState, setNavState, catalog}) {
                         </IonCol>
                     </IonRow>
                     <IonRow>
-                        <IonCol size={7}>
+                        <IonCol size={9}>
                             <IonItem>
                                 <IonSelect
                                     placeHolder="Select Books to Render"
@@ -145,7 +145,7 @@ export default function Print({pkState, navState, setNavState, catalog}) {
                                 </IonSelect>
                             </IonItem>
                         </IonCol>
-                        <IonCol size={2}>
+                        <IonCol size={1}>
                             <IonButton
                                 color="secondary"
                                 size="small"
@@ -161,10 +161,10 @@ export default function Print({pkState, navState, setNavState, catalog}) {
                                 }
                                 disabled={!catalog.docSets}
                             >
-                                All Books
+                                All
                             </IonButton>
                         </IonCol>
-                        <IonCol size={2}>
+                        <IonCol size={1}>
                             <IonButton
                                 color="secondary"
                                 fill="outline"
@@ -173,7 +173,7 @@ export default function Print({pkState, navState, setNavState, catalog}) {
                                 onClick={() => {setBibleBooks([])}}
                                 disabled={!catalog.docSets}
                             >
-                                No Books
+                                None
                             </IonButton>
                         </IonCol>
                         <IonCol size={1}>

@@ -12,11 +12,10 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { useProskomma } from 'proskomma-react-hooks';
-import { albums, reader, book, diamond, crop, search, print } from 'ionicons/icons';
+import { albums, reader, book, crop, search, print } from 'ionicons/icons';
 import Versions from './pages/Versions/Versions';
 import BrowseBook from './pages/BrowseBook/BrowseBook';
 import BrowseChapter from './pages/BrowseChapter/BrowseChapter';
-import BrowseVerse from './pages/BrowseVerse/BrowseVerse';
 import BrowsePassage from './pages/BrowsePassage/BrowsePassage';
 import Search from './pages/Search/Search';
 import Print from './pages/Print/Print';
@@ -103,14 +102,6 @@ const App = () => {
                                 setNavState={setNavState}
                             />
                         </Route>
-                        <Route path="/browseVerse">
-                            <BrowseVerse
-                                catalog={catalog}
-                                pkState={pkState}
-                                navState={navState}
-                                setNavState={setNavState}
-                            />
-                        </Route>
                         <Route path="/browsePassage">
                             <BrowsePassage
                                 catalog={catalog}
@@ -165,17 +156,9 @@ const App = () => {
                             <IonLabel>Chapter</IonLabel>
                         </IonTabButton>
                         <IonTabButton
-                            tab="browseVerse"
-                            href="/browseVerse"
-                            data-test-id="tab-bar-button-tab4"
-                        >
-                            <IonIcon icon={diamond} />
-                            <IonLabel>Verse</IonLabel>
-                        </IonTabButton>
-                        <IonTabButton
                             tab="browsePassage"
                             href="/browsePassage"
-                            data-test-id="tab-bar-button-tab5"
+                            data-test-id="tab-bar-button-tab4"
                         >
                             <IonIcon icon={crop} />
                             <IonLabel>Passage</IonLabel>
@@ -183,12 +166,12 @@ const App = () => {
                         <IonTabButton
                             tab="search"
                             href="/search"
-                            data-test-id="tab-bar-button-tab6"
+                            data-test-id="tab-bar-button-tab5"
                         >
                             <IonIcon icon={search} />
                             <IonLabel>Search</IonLabel>
                         </IonTabButton>
-                        <IonTabButton tab="print" href="/print" data-test-id="tab-bar-button-tab7">
+                        <IonTabButton tab="print" href="/print" data-test-id="tab-bar-button-tab6">
                             <IonIcon icon={print} />
                             <IonLabel>Print</IonLabel>
                         </IonTabButton>
