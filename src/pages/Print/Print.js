@@ -12,51 +12,26 @@ import {
     IonSelectOption,
     IonInput,
     IonButton,
+    IonIcon,
 } from "@ionic/react";
+import {printOutline} from "ionicons/icons";
 import {doRender} from 'proskomma-render-pdf';
 import PageHeader from "../../components/PageHeader";
 import "./Print.css";
-import {pagedJSStyle} from "./htmlResources";
 
 export default function Print({pkState, navState, setNavState, catalog}) {
-    const [bibleName, setBibleName] = useState(navState.docSetId);
-    const [userTypedBibleName, setUserTypedBibleName] = useState(false);
+    const [rendering, setRendering] = useState('false');
+    const [bibleName, setBibleName] = useState('');
     const [bibleBooks, setBibleBooks] = useState([]);
-    const [bibleBookOptions, setBibleBookOptions] = useState([]);
 
-    useEffect(() => {
-        if (!userTypedBibleName) {
-            setBibleName(navState.docSetId);
-        }
-    }, [navState.docSetId, userTypedBibleName])
-
-    useEffect(() => {
-        const doQuery = async () => {
-            setBibleName(navState.docSetId);
-            setBibleBookOptions(
-                catalog.docSets.filter(ds => ds.id === navState.docSetId)[0].documents
-                    .map(
-                        doc => <IonSelectOption
-                            key={doc.id}
-                            value={doc.bookCode}
-                            selected={bibleBooks.includes(doc.bookCode)}
-                        >
-                            <IonLabel>{doc.bookCode}</IonLabel>
-                        </IonSelectOption>
-                    )
-            );
-        }
-        if (pkState.proskomma && navState.docSetId && catalog.docSets && catalog.docSets.length) {
-            doQuery().then();
-        }
-    }, [pkState.proskomma, catalog.docSets, navState.docSetId], bibleBooks);
+    const disableRender = () => !catalog.docSets || bibleBooks.length === 0 || bibleName.trim().length === 0;
 
     useEffect(
         () => {
             const doLocalRender = async () => {
                 const config = {
                     "bookOutput": {},
-                    "title": bibleName,
+                    "title": bibleName.trim(),
                     "language": "en",
                     "textDirection": "ltr",
                     "uid": "ULT",
@@ -85,19 +60,17 @@ export default function Print({pkState, navState, setNavState, catalog}) {
                 const newPage = window.open();
                 newPage.document.head.innerHTML = "<title>PDF Preview</title>";
                 config.newPage = newPage;
-                const config2 = await doRender(
+                return await doRender(
                     pkState.proskomma,
                     config,
                     [navState.docSetId],
                     catalog.docSets
-                        .filter(ds => ds.id === navState.docSetId)[0]
-                        .documents
+                        .filter(ds => ds.id === navState.docSetId)[0]?.documents
                         .filter(d => bibleBooks.includes(d.bookCode))
                         .map(d => d.id)
                 );
-                return config2;
             }
-            if (bibleBooks.length > 0) {
+            if (!disableRender() && rendering) {
                 doLocalRender()
                     .then(config2 => {
                             config2.newPage.document.body.innerHTML = config2.output.replace(/^[\s\S]*<body>/, "").replace(/<\/body>[\s\S]*/, "");
@@ -105,19 +78,22 @@ export default function Print({pkState, navState, setNavState, catalog}) {
                             script.src = 'https://unpkg.com/pagedjs/dist/paged.polyfill.js';
                             config2.newPage.document.head.appendChild(script);
                             const style = document.createElement('style');
-                            style.innerHTML = pagedJSStyle;
+                            style.innerHTML = config2.output.replace(/^[\s\S]*<style>/, "").replace(/<\/style>[\s\S]*/, "");
                             config2.newPage.document.head.appendChild(style);
+                            setRendering(false);
                         }
                     )
+            } else {
+                setRendering(false);
             }
         },
-        [bibleName, bibleBooks]
+        [bibleBooks, rendering]
     );
 
     return (
         <IonPage>
             <PageHeader
-                title="Print Preview / PDF"
+                title="Print Preview"
                 navState={navState}
                 setNavState={setNavState}
                 catalog={catalog}
@@ -126,66 +102,90 @@ export default function Print({pkState, navState, setNavState, catalog}) {
                 <IonGrid>
                     <IonRow>
                         <IonCol>
-                            <IonItem>
-                                <IonLabel>Bible Name:</IonLabel>
-                                <IonInput
-                                    onIonBlur={
-                                        e => {
-                                            setBibleName(e.target.value);
-                                            setUserTypedBibleName(true);
-                                        }
+                            <IonInput
+                                class="fullWidthInput"
+                                size={100}
+                                color="secondary"
+                                placeHolder="Title for Preview"
+                                debounce={500}
+                                onIonChange={
+                                    e => {
+                                        setBibleName(e.target.value);
                                     }
-                                    value={bibleName}
-                                />
-                            </IonItem>
+                                }
+                                value={bibleName}
+                            />
                         </IonCol>
                     </IonRow>
                     <IonRow>
-                        <IonCol size={10}>
+                        <IonCol size={7}>
                             <IonItem>
-                                <IonLabel>Select One or More Books</IonLabel>
                                 <IonSelect
-                                    class="printBookSelect"
                                     placeHolder="Select Books to Render"
                                     value={bibleBooks}
                                     multiple={true}
                                     cancelText="Cancel"
                                     okText="Set"
                                     onIonChange={e => setBibleBooks(e.detail.value)}
-                                    disabled={bibleBookOptions.length === 0}
+                                    disabled={!catalog.docSets}
                                 >
-                                    {bibleBookOptions}
+                                    {
+                                        catalog.docSets && catalog.docSets
+                                            .filter(ds => ds.id === navState.docSetId)[0]?.documents
+                                            .map(
+                                                doc => <IonSelectOption
+                                                    key={doc.id}
+                                                    value={doc.bookCode}
+                                                    selected={bibleBooks.includes(doc.bookCode)}
+                                                >
+                                                    <IonLabel>{doc.bookCode}</IonLabel>
+                                                </IonSelectOption>
+                                            )
+                                    }
                                 </IonSelect>
                             </IonItem>
                         </IonCol>
-                        <IonCol size={1}>
+                        <IonCol size={2}>
                             <IonButton
                                 color="secondary"
                                 size="small"
+                                fill="outline"
                                 onClick={
                                     () => {
-                                        setBibleBooks(catalog.docSets.filter(ds => ds.id === navState.docSetId)[0].documents.map(doc => doc.bookCode));
+                                        setBibleBooks(
+                                            catalog.docSets
+                                                .filter(ds => ds.id === navState.docSetId)[0]?.documents
+                                                .map(doc => doc.bookCode)
+                                        );
                                     }
                                 }
-                                disabled={bibleBookOptions.length === 0}
+                                disabled={!catalog.docSets}
                             >
                                 All Books
                             </IonButton>
                         </IonCol>
-                        <IonCol size={1}>
+                        <IonCol size={2}>
                             <IonButton
                                 color="secondary"
+                                fill="outline"
                                 size="small"
                                 class="ion-float-right"
-                                onClick={
-                                    () => {
-                                        setBibleBooks([]);
-                                        document.querySelector("#preview").innerHTML = ""
-                                    }
-                                }
-                                disabled={bibleBookOptions.length === 0}
+                                onClick={() => {setBibleBooks([])}}
+                                disabled={!catalog.docSets}
                             >
                                 No Books
+                            </IonButton>
+                        </IonCol>
+                        <IonCol size={1}>
+                            <IonButton
+                                color="primary"
+                                fill="clear"
+                                size="small"
+                                class="ion-float-right"
+                                onClick={() => {setRendering(true)}}
+                                disabled={disableRender() || rendering}
+                            >
+                                <IonIcon icon={printOutline} />
                             </IonButton>
                         </IonCol>
                     </IonRow>

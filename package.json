@@ -20,6 +20,7 @@
     "buffer": "^6.0.3",
     "ionicons": "^5.4.0",
     "pagedjs": "^0.2.0",
+    "prop-types": "^15.8.1",
     "proskomma-freeze": "^0.6.2",
     "proskomma-frozen-archives": "0.0.3",
     "proskomma-react-hooks": "^1.11.1",
