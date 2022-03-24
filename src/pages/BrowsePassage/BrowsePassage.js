@@ -6,6 +6,7 @@ import PageHeader from "../../components/PageHeader";
 import parseReferenceString from "./parseReferenceString";
 import PassageResults from "./PassageResults";
 import "./BrowsePassage.css";
+import InputDisplay from "./InputDisplay";
 
 export default function BrowsePassage({pkState, navState, setNavState, catalog}) {
 
@@ -73,13 +74,15 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
             <IonContent>
                 <IonGrid>
                     <IonRow>
-                        <IonCol size={12}>
+                        <IonCol size={2}>
                             <IonInput
                                 value={reference}
                                 onIonChange={e => setReference(e.target.value)}
                                 debounce={500}
-                                style={{color: parseResult.parsed && parseResult.startVerse ? '#0C0' : '#C00'}}
                             />
+                        </IonCol>
+                        <IonCol size={10}>
+                            <InputDisplay parseR={parseResult} />
                         </IonCol>
                     </IonRow>
                     <IonRadioGroup value={displayMode} onIonChange={e => setDisplayMode(e.detail.value)}>
