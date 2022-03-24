@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {IonCol, IonRow, IonTitle} from '@ionic/react';
+import FormattedParagraph from "./FormattedParagraph";
 
 export default function PassageByBlocks({docSets, displayFlags, displayMode, navState}) {
     return  docSets
@@ -11,7 +12,7 @@ export default function PassageByBlocks({docSets, displayFlags, displayMode, nav
                 <IonTitle>{ds.id}</IonTitle>
             </IonCol>
         </IonRow>}
-        {ds.document.mainSequence.blocks.map((b, n2) => <IonRow key={`${n2}-${n1}`}><IonCol>{b.text}</IonCol></IonRow>)
+        {ds.document.mainSequence.blocks.map((b, n2) => <FormattedParagraph block={b} n={n2}  key={`${n2}-${n1}`} />)
         }</div>)
      
 }   

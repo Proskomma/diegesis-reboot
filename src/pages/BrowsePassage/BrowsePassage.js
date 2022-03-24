@@ -46,7 +46,9 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
           }
           mainSequence {
               blocks(withScriptureCV:"${parsedReference.split(/\s+/)[1]}") {
+                  scopeLabels(startsWith: ["blockTag"])
                   text (withScriptureCV:"${parsedReference.split(/\s+/)[1]}")
+                  items{type subType payload}
             }
           }
         }
