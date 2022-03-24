@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {IonAccordion, IonAccordionGroup, IonCol, IonContent, IonGrid, IonPage, IonRow, IonItem, IonLabel, IonList, IonTitle, IonText, IonButton} from "@ionic/react";
-import PageHeader from "../../components/PageHeader";
+import {IonAccordion, IonAccordionGroup, IonCol, IonContent, IonPage, IonRow, IonItem, IonLabel, IonList, IonTitle, IonText, IonButton} from "@ionic/react";
+import PageHeader from "./PageHeader";
 import PkErrors from "../../components/PkErrors";
 import { useIonRouter } from "@ionic/react";
 
@@ -49,14 +49,9 @@ export default function Versions({navState, setNavState, catalog, catalogErrors}
 
     return (
         <IonPage>
-            <PageHeader
-                title="List Versions"
-                navState={navState}
-                setNavState={setNavState}
-                catalog={catalog}
-            />
+            <PageHeader title="List Versions" />
             <IonContent fullscreen>
-                <IonGrid>
+                <IonList>
                     <IonRow>
                         <IonCol>
                             <IonTitle>{`${catalog.nDocuments} Bible Books in ${catalog.nDocSets} Bibles`}</IonTitle>
@@ -76,7 +71,7 @@ export default function Versions({navState, setNavState, catalog, catalogErrors}
                             </IonCol>
                         </IonRow>
                     )}
-                </IonGrid>
+                </IonList>
             </IonContent>
         </IonPage>
     );
