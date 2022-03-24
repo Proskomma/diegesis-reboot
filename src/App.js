@@ -12,10 +12,9 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { useProskomma } from 'proskomma-react-hooks';
-import { albums, reader, book, crop, search, print } from 'ionicons/icons';
+import { albums, reader, book, search, print } from 'ionicons/icons';
 import Versions from './pages/Versions/Versions';
 import BrowseBook from './pages/BrowseBook/BrowseBook';
-import BrowseChapter from './pages/BrowseChapter/BrowseChapter';
 import BrowsePassage from './pages/BrowsePassage/BrowsePassage';
 import Search from './pages/Search/Search';
 import Print from './pages/Print/Print';
@@ -94,14 +93,6 @@ const App = () => {
                                 pkState={pkState}
                             />
                         </Route>
-                        <Route path="/browseChapter">
-                            <BrowseChapter
-                                catalog={catalog}
-                                pkState={pkState}
-                                navState={navState}
-                                setNavState={setNavState}
-                            />
-                        </Route>
                         <Route path="/browsePassage">
                             <BrowsePassage
                                 catalog={catalog}
@@ -148,25 +139,17 @@ const App = () => {
                             <IonLabel>Book</IonLabel>
                         </IonTabButton>
                         <IonTabButton
-                            tab="browseChapter"
-                            href="/browseChapter"
+                            tab="browsePassage"
+                            href="/browsePassage"
                             data-test-id="tab-bar-button-tab3"
                         >
                             <IonIcon icon={reader} />
-                            <IonLabel>Chapter</IonLabel>
-                        </IonTabButton>
-                        <IonTabButton
-                            tab="browsePassage"
-                            href="/browsePassage"
-                            data-test-id="tab-bar-button-tab4"
-                        >
-                            <IonIcon icon={crop} />
                             <IonLabel>Passage</IonLabel>
                         </IonTabButton>
                         <IonTabButton
                             tab="search"
                             href="/search"
-                            data-test-id="tab-bar-button-tab5"
+                            data-test-id="tab-bar-button-tab4"
                         >
                             <IonIcon icon={search} />
                             <IonLabel>Search</IonLabel>
