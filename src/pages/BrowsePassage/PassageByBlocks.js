@@ -1,19 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {IonCol, IonRow, IonTitle} from '@ionic/react';
+import {IonList, IonListHeader} from '@ionic/react';
 import FormattedParagraph from "./FormattedParagraph";
 
 export default function PassageByBlocks({docSets, displayFlags, displayMode, navState}) {
     return  docSets
     .filter((ds) => displayFlags[displayMode].allDocSets || ds.id === navState.docSetId)
-    .map( (ds, n1) => <div key={n1}>
-        {docSets.length > 1 && <IonRow>
-            <IonCol>
-                <IonTitle>{ds.id}</IonTitle>
-            </IonCol>
-        </IonRow>}
+    .filter(ds => ds.document)
+    .map( (ds, n1) => <IonList key={n1}>
+        {docSets.length > 1 && <IonListHeader class="mainContentTitle2">{ds.id}</IonListHeader>}
         {ds.document.mainSequence.blocks.map((b, n2) => <FormattedParagraph block={b} n={n2}  key={`${n2}-${n1}`} />)
-        }</div>)
+        }</IonList>)
      
 }   
 

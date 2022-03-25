@@ -1,14 +1,14 @@
 import React, {useState, useEffect} from "react";
 import {useQuery} from "proskomma-react-hooks";
 import PropTypes from "prop-types";
-import {IonCol, IonContent, IonGrid, IonPage, IonRow, IonInput, IonLabel, IonRadioGroup, IonRadio} from '@ionic/react';
-import PageHeader from "../../components/PageHeader";
+import {IonContent, IonPage, IonInput, IonLabel, IonRadioGroup, IonRadio, IonList, IonItem} from '@ionic/react';
+import PageHeader2 from "../../components/PageHeader2";
 import parseReferenceString from "./parseReferenceString";
 import PassageResults from "./PassageResults";
 import "./BrowsePassage.css";
 import InputDisplay from "./InputDisplay";
 
-export default function BrowsePassage({pkState, navState, setNavState, catalog}) {
+export default function BrowsePassage({pkState, navState}) {
 
     const [reference, setReference] = useState('3JN 1:1-3');
     const [parsedReference, setParsedReference] = useState('3JN 1:1-3');
@@ -24,6 +24,13 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
     const [displayMode, setDisplayMode] = useState("versesForOneVersion");
 
     const verbose = true;
+
+    useEffect(
+        () => {
+            setReference(`${navState.bookCode} ${navState.chapter}:${navState.verse}`);
+        },
+        [navState]
+    );
 
     useEffect(
         () => {
@@ -65,50 +72,43 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
 
     return (
         <IonPage>
-            <PageHeader
-                title="Browse Verse"
-                navState={navState}
-                setNavState={setNavState}
-                catalog={catalog}
-            />
+            <PageHeader2 title="Select Passage" />
             <IonContent>
-                <IonGrid>
-                    <IonRow>
-                        <IonCol size={2}>
-                            <IonInput
+                <IonList>
+                    <IonItem>
+                        <IonLabel position="floating">Bible reference:</IonLabel>
+                        <IonInput
                                 value={reference}
                                 onIonChange={e => setReference(e.target.value)}
+                                type="reference"
+                                name="bibleReference"
                                 debounce={500} 
-                                min="100%"
-                            />
-                        </IonCol>
-                        <IonCol size={10}>
-                            <InputDisplay parseR={parseResult} />
-                        </IonCol>
-                    </IonRow>
+                                max="100"
+                                maxlength="20"
+                        />
+                        <InputDisplay parseR={parseResult} name="bibleReference" slot="end" />
+                    </IonItem>
                     <IonRadioGroup value={displayMode} onIonChange={e => setDisplayMode(e.detail.value)}>
-                        <IonRow>
-                            <IonCol size={2}>
+                            <IonItem>
                                 <IonLabel>One Version</IonLabel>
                                 <IonRadio value="versesForOneVersion" />
-                            </IonCol>
-                            <IonCol size={2}>
+                            </IonItem>
+                            <IonItem>
                                 <IonLabel>By Version</IonLabel>
                                 <IonRadio value="versesByVersion" />
-                            </IonCol>
-                            <IonCol size={2}>
+                            </IonItem>
+                            <IonItem>
                                 <IonLabel>By Verse</IonLabel>
                                 <IonRadio value="versesByVerse" />
-                            </IonCol>
-                            <IonCol size={2}>
+                            </IonItem>
+                            <IonItem>
                                 <IonLabel>Blocks For One Version</IonLabel>
                                 <IonRadio value="blocksForOneVersion" />
-                            </IonCol>
-                            <IonCol size={2}>
+                            </IonItem>
+                            <IonItem>
                                 <IonLabel>Blocks By Version</IonLabel>
                                 <IonRadio value="blocksByVersion" />
-                            </IonCol>
-                        </IonRow>
+                            </IonItem>
                     </IonRadioGroup>
                     <PassageResults
                         reference={reference}
@@ -118,7 +118,7 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
                         displayMode={displayMode} 
                         navState={navState}
                     />
-                </IonGrid>
+                </IonList>
             </IonContent>
         </IonPage>
     );
@@ -127,6 +127,4 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
 BrowsePassage.propTypes = {
     pkState: PropTypes.object.isRequired,
     navState: PropTypes.object.isRequired,
-    setNavState: PropTypes.func.isRequired,
-    catalog: PropTypes.object.isRequired,
 };

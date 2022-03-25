@@ -7,11 +7,13 @@ export default function InputDisplay({parseR}) {
     return Object.keys(parseR).length === 0 || parseR.parsed && parseR.startVerse ? 
     <IonIcon 
     size="large" 
+    slot="end" 
     color="success" 
     icon={checkmarkCircle} 
     /> : 
     <IonIcon 
     size="large" 
+    slot="end" 
     color="danger" 
     icon={closeCircle} 
     />

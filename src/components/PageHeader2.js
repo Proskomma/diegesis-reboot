@@ -1,9 +1,8 @@
 import React from 'react';
 import { IonHeader, IonToolbar, IonList, IonListHeader } from '@ionic/react';
 import PropTypes from 'prop-types';
-import "./Versions.css";
 
-export default function PageHeader({ title}) {
+export default function PageHeader2({ title}) {
 
     return (
         <IonHeader>
@@ -16,6 +15,6 @@ export default function PageHeader({ title}) {
     );
 }
 
-PageHeader.propTypes = {
+PageHeader2.propTypes = {
     title: PropTypes.string,
 };

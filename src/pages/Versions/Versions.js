@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { IonAccordionGroup, IonContent, IonPage, IonItem, IonList, IonListHeader } from "@ionic/react";
-import PageHeader from "./PageHeader";
+import PageHeader2 from "../../components/PageHeader2";
 // import PkErrors from "../../components/PkErrors";
 import { useIonRouter } from "@ionic/react";
 import VersionsAccordion from "./VersionsAccordion";
@@ -17,12 +17,12 @@ export default function Versions({navState, setNavState, catalog}) {
         const bookCode = element?.getAttribute("book");
         const chapter = parseInt(element?.getAttribute("chapter"));
         setNavState((prevState) => ({ ...prevState, docSetId: docSetId ,bookCode: bookCode, chapter: chapter}));
-        router.push("/browseChapter");
+        router.push("/browsePassage");
     };
 
     return (
         <IonPage>
-            <PageHeader title="List Versions" />
+            <PageHeader2 title="List Versions" />
             <IonContent fullscreen>
                 <IonList>
                     <IonListHeader class="mainContentTitle" color="primary">{`${catalog.nDocuments} Bible Books in ${catalog.nDocSets} Bibles`}</IonListHeader>

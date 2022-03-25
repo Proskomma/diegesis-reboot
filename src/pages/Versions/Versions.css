@@ -2,21 +2,3 @@
 .bookCodeLabel {font-weight: bold;}
 .secondaryLabel {padding-left: 2em; font-style: italic;}
 ion-accordion.accordion-expanded ion-item[slot="header"] {--background: #efefef;}
-.headerTitle {
-    display: block;
-    font-size: 1.17em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: bold;
-}
-.mainContentTitle {
-    display: block;
-    font-size: 1.17em;
-    margin-top: 1em;
-    margin-bottom: 1em;
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: bold;
-}

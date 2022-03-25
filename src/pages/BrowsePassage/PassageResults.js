@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {IonCol, IonRow} from '@ionic/react';
+import {IonItem} from '@ionic/react';
 import PassageByVersions from "./PassageByVersions";
 import PassageByVerse from "./PassageByVerse";
 import PassageByVersion from "./PassageByVersion";
@@ -11,29 +11,21 @@ export default function PassageResults({reference, parseResult, docSets, display
     const cvArray = docSets[0]?.document?.cv.map(v => v.scopeLabels) || [];
 
     if (reference === '') {
-        return <IonRow>
-            <IonCol>
-                Please enter a book reference!
-            </IonCol>
-        </IonRow>;
+        return <IonItem>
+            Please enter a book reference!
+        </IonItem>;
     } else if (!parseResult.parsed || !parseResult.startVerse) {
-        return <IonRow>
-            <IonCol>
-                Wrong format!
-            </IonCol>
-        </IonRow>;
+        return <IonItem>
+            Wrong format!
+        </IonItem>;
     } else if (docSets?.filter(ds => ds.document).length === 0) {
-        return <IonRow>
-            <IonCol>
-                Book not found!
-            </IonCol>
-        </IonRow>;
+        return <IonItem>
+            Book not found!
+        </IonItem>;
     } else if (docSets?.filter(ds => ds.document?.cv.length > 0).length === 0) {
-        return <IonRow>
-            <IonCol>
-                Verse not found!
-            </IonCol>
-        </IonRow>;
+        return <IonItem>
+            Verse not found!
+        </IonItem>;
     } else if (displayFlags[displayMode].byBlock) {
         return <PassageByBlocks docSets={docSets} displayFlags={displayFlags} displayMode={displayMode} navState={navState} />;
     }   else {    // by Verse
