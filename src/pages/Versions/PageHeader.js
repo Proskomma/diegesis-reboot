@@ -1,6 +1,7 @@
 import React from 'react';
-import { IonCol, IonHeader, IonRow, IonTitle, IonToolbar, IonList, IonItem } from '@ionic/react';
+import { IonHeader, IonToolbar, IonList, IonListHeader } from '@ionic/react';
 import PropTypes from 'prop-types';
+import "./Versions.css";
 
 export default function PageHeader({ title}) {
 
@@ -8,13 +9,7 @@ export default function PageHeader({ title}) {
         <IonHeader>
             <IonToolbar>
                 <IonList>
-                    <IonItem>
-                        <IonRow>
-                            <IonCol>
-                                <IonTitle size="large">{title} - Diegesis Reboot</IonTitle>
-                            </IonCol>
-                        </IonRow>
-                    </IonItem>
+                    <IonListHeader class="headerTitle">{title}</IonListHeader>
                 </IonList>
             </IonToolbar>
         </IonHeader>
