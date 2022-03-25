@@ -78,7 +78,8 @@ export default function BrowsePassage({pkState, navState, setNavState, catalog})
                             <IonInput
                                 value={reference}
                                 onIonChange={e => setReference(e.target.value)}
-                                debounce={500}
+                                debounce={500} 
+                                min="100%"
                             />
                         </IonCol>
                         <IonCol size={10}>
