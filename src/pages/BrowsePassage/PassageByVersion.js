@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {IonList, IonItem} from '@ionic/react';
+import {IonList, IonItem, IonText} from '@ionic/react';
 
 export default function PassageByVersion({docSet, keyPrefix}) {
     const sLO = (sL) => {
@@ -13,15 +13,14 @@ export default function PassageByVersion({docSet, keyPrefix}) {
     };
 
     return <div key={keyPrefix}>
-        
+
         {docSet.document?.cv.map(
             (v, n2) => <IonList key={`${keyPrefix}-${n2}`}>
 
                 <IonItem>
-                    {`${sLO(v.scopeLabels)["chapter"]}:${sLO(v.scopeLabels)["verses"]}`}
-                </IonItem>
-                <IonItem>
-                    {v.text}
+                    <IonText>
+                        <IonText class="cv">{`${sLO(v.scopeLabels)["chapter"]}:${sLO(v.scopeLabels)["verses"]}`}</IonText> <IonText>{v.text}</IonText>
+                    </IonText>
                 </IonItem>
             </IonList>
         )
