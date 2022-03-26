@@ -72,7 +72,7 @@ export default function BrowsePassage({pkState, navState}) {
 
     return (
         <IonPage>
-            <PageHeader2 title="Select Passage" />
+            <PageHeader2 title="View Passage" />
             <IonContent>
                 <IonList>
                     <IonItem>

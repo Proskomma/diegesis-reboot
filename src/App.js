@@ -3,7 +3,6 @@ import {Redirect, Route} from 'react-router-dom';
 import {
     IonApp,
     IonIcon,
-    IonLabel,
     IonRouterOutlet,
     IonTabBar,
     IonTabButton,
@@ -105,14 +104,13 @@ const App = () => {
                             <Redirect to="/tabs/browsePassage" />
                         </Route>
                     </IonRouterOutlet>
-                    <IonTabBar slot="top">
+                    <IonTabBar slot="top" color="primary">
                         <IonTabButton
                             tab="browseBook"
                             href="/tabs/browseBook"
                             data-test-id="tab-bar-button-tab1"
                         >
                             <IonIcon icon={book} />
-                            <IonLabel>Book</IonLabel>
                         </IonTabButton>
                         <IonTabButton
                             tab="browsePassage"
@@ -120,7 +118,6 @@ const App = () => {
                             data-test-id="tab-bar-button-tab2"
                         >
                             <IonIcon icon={reader} />
-                            <IonLabel>Passage</IonLabel>
                         </IonTabButton>
                         <IonTabButton
                             tab="search"
@@ -128,7 +125,6 @@ const App = () => {
                             data-test-id="tab-bar-button-tab3"
                         >
                             <IonIcon icon={search} />
-                            <IonLabel>Search</IonLabel>
                         </IonTabButton>
                     </IonTabBar>
                 </IonTabs>
