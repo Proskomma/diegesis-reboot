@@ -41,7 +41,7 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import {useState} from 'react';
-import SideMenuNavigation from "./components/SideMenuNavigation";
+import SideMenu from "./components/SideMenu";
 
 setupIonicReact();
 
@@ -73,7 +73,7 @@ const App = () => {
 
     return (
         <IonApp>
-            <SideMenuNavigation catalog={catalog} navState={navState} setNavState={setNavState} />
+            <SideMenu catalog={catalog} navState={navState} setNavState={setNavState} />
             <IonReactRouter>
                 <IonTabs>
                     <IonRouterOutlet id="main">
@@ -105,7 +105,7 @@ const App = () => {
                             <Redirect to="/tabs/browsePassage" />
                         </Route>
                     </IonRouterOutlet>
-                    <IonTabBar slot="bottom">
+                    <IonTabBar slot="top">
                         <IonTabButton
                             tab="browseBook"
                             href="/tabs/browseBook"
