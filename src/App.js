@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import React, {useEffect} from 'react';
+import {Redirect, Route} from 'react-router-dom';
 import {
     IonApp,
     IonIcon,
@@ -10,17 +10,15 @@ import {
     IonTabs,
     setupIonicReact,
 } from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { useProskomma } from 'proskomma-react-hooks';
-import { albums, reader, book, search, print } from 'ionicons/icons';
-import Versions from './pages/Versions/Versions';
+import {IonReactRouter} from '@ionic/react-router';
+import {useProskomma} from 'proskomma-react-hooks';
+import {reader, book, search} from 'ionicons/icons';
 import BrowseBook from './pages/BrowseBook/BrowseBook';
 import BrowsePassage from './pages/BrowsePassage/BrowsePassage';
 import Search from './pages/Search/Search';
-import Print from './pages/Print/Print';
-import { nt_ebible_27book as frozen } from 'proskomma-frozen-archives';
-import { useCatalog } from 'proskomma-react-hooks';
-import { thaw } from 'proskomma-freeze';
+import {nt_ebible_27book as frozen} from 'proskomma-frozen-archives';
+import {useCatalog} from 'proskomma-react-hooks';
+import {thaw} from 'proskomma-freeze';
 
 import './App.css';
 
@@ -42,7 +40,8 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import { useState } from 'react';
+import {useState} from 'react';
+import SideMenuNavigation from "./components/SideMenuNavigation";
 
 setupIonicReact();
 
@@ -56,16 +55,16 @@ const App = () => {
     const [navState, setNavState] = useState(initialState);
 
     const verbose = true;
-    const pkState = useProskomma({ verbose });
+    const pkState = useProskomma({verbose});
 
     useEffect(() => {
         thaw(pkState.proskomma, frozen).then(() => {
             console.log('thawed');
             pkState.newStateId();
         });
-    }, []);
+    }, [pkState.proskomma]);
 
-    const { catalog, error: catalogError } = useCatalog({
+    const {catalog} = useCatalog({
         proskomma: pkState.proskomma,
         stateId: pkState.stateId,
         verbose: true,
@@ -74,18 +73,11 @@ const App = () => {
 
     return (
         <IonApp>
+            <SideMenuNavigation catalog={catalog} navState={navState} setNavState={setNavState} />
             <IonReactRouter>
                 <IonTabs>
-                    <IonRouterOutlet>
-                        <Route path="/versions">
-                            <Versions
-                                catalogError={catalogError}
-                                catalog={catalog}
-                                navState={navState}
-                                setNavState={setNavState}
-                            />
-                        </Route>
-                        <Route path="/browseBook">
+                    <IonRouterOutlet id="main">
+                        <Route path="/tabs/browseBook">
                             <BrowseBook
                                 catalog={catalog}
                                 navState={navState}
@@ -93,7 +85,7 @@ const App = () => {
                                 pkState={pkState}
                             />
                         </Route>
-                        <Route path="/browsePassage">
+                        <Route path="/tabs/browsePassage">
                             <BrowsePassage
                                 catalog={catalog}
                                 pkState={pkState}
@@ -101,7 +93,7 @@ const App = () => {
                                 setNavState={setNavState}
                             />
                         </Route>
-                        <Route path="/search">
+                        <Route path="/tabs/search">
                             <Search
                                 catalog={catalog}
                                 pkState={pkState}
@@ -109,54 +101,34 @@ const App = () => {
                                 setNavState={setNavState}
                             />
                         </Route>
-                        <Route path="/print">
-                            <Print
-                                catalog={catalog}
-                                navState={navState}
-                                setNavState={setNavState}
-                                pkState={pkState}
-                            />
-                        </Route>
-                        <Route exact path="/">
-                            <Redirect to="/versions" />
+                        <Route exact path="/" >
+                            <Redirect to="/tabs/browsePassage" />
                         </Route>
                     </IonRouterOutlet>
                     <IonTabBar slot="bottom">
                         <IonTabButton
-                            tab="versions"
-                            href="/versions"
-                            data-test-id="tab-bar-button-tab1"
-                        >
-                            <IonIcon icon={albums} />
-                            <IonLabel>Versions</IonLabel>
-                        </IonTabButton>
-                        <IonTabButton
                             tab="browseBook"
-                            href="/browseBook"
-                            data-test-id="tab-bar-button-tab2"
+                            href="/tabs/browseBook"
+                            data-test-id="tab-bar-button-tab1"
                         >
                             <IonIcon icon={book} />
                             <IonLabel>Book</IonLabel>
                         </IonTabButton>
                         <IonTabButton
                             tab="browsePassage"
-                            href="/browsePassage"
-                            data-test-id="tab-bar-button-tab3"
+                            href="/tabs/browsePassage"
+                            data-test-id="tab-bar-button-tab2"
                         >
                             <IonIcon icon={reader} />
                             <IonLabel>Passage</IonLabel>
                         </IonTabButton>
                         <IonTabButton
                             tab="search"
-                            href="/search"
-                            data-test-id="tab-bar-button-tab4"
+                            href="/tabs/search"
+                            data-test-id="tab-bar-button-tab3"
                         >
                             <IonIcon icon={search} />
                             <IonLabel>Search</IonLabel>
-                        </IonTabButton>
-                        <IonTabButton tab="print" href="/print" data-test-id="tab-bar-button-tab6">
-                            <IonIcon icon={print} />
-                            <IonLabel>Print</IonLabel>
                         </IonTabButton>
                     </IonTabBar>
                 </IonTabs>

@@ -76,13 +76,13 @@ export default function BrowsePassage({pkState, navState}) {
             <IonContent>
                 <IonList>
                     <IonItem>
-                        <IonLabel position="floating">Bible reference:</IonLabel>
+                        <IonLabel position="floating">Bible reference</IonLabel>
                         <IonInput
                                 value={reference}
                                 onIonChange={e => setReference(e.target.value)}
                                 type="reference"
                                 name="bibleReference"
-                                debounce={500} 
+                                debounce={500}
                                 max="100"
                                 maxlength="20"
                         />
@@ -115,7 +115,7 @@ export default function BrowsePassage({pkState, navState}) {
                         parseResult={parseResult}
                         docSets={selectedDocSets}
                         displayFlags={displayFlags}
-                        displayMode={displayMode} 
+                        displayMode={displayMode}
                         navState={navState}
                     />
                 </IonList>
