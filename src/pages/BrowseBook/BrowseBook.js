@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { IonContent, IonPage, IonList, IonItem } from '@ionic/react';
-import PageHeader from '../../components/PageHeader';
+import { IonContent, IonPage, IonList, IonItem, IonText } from '@ionic/react';
+import PageHeader2 from '../../components/PageHeader2';
 import { ScriptureDocSet, ScriptureParaModel, ScriptureParaModelQuery } from 'proskomma-render';
 import BrowseDocumentModel from './BrowseDocumentModel';
 import './BrowseBook.css';
 
-export default function BrowseBook({ pkState, navState, setNavState, catalog }) {
+export default function BrowseBook({ pkState, navState, catalog }) {
     const [renderedSequence, setRenderedSequence] = useState(null);
 
     useEffect(() => {
@@ -40,15 +40,12 @@ export default function BrowseBook({ pkState, navState, setNavState, catalog }) 
     }, [pkState.stateId, navState.docSetId, navState.bookCode, catalog?.docSets]);
     return (
         <IonPage>
-            <PageHeader
-                title="Browse Book"
-                navState={navState}
-                setNavState={setNavState}
-                catalog={catalog}
-            />
+            <PageHeader2 title="Browse Book" />
             <IonContent>
                 <IonList>
-                        <IonItem>{renderedSequence}</IonItem>
+                        <IonItem>
+                            <IonText>{renderedSequence}</IonText>
+                        </IonItem>
                 </IonList>
             </IonContent>
         </IonPage>
@@ -58,6 +55,5 @@ export default function BrowseBook({ pkState, navState, setNavState, catalog }) 
 BrowseBook.propTypes = {
     pkState: PropTypes.object.isRequired,
     navState: PropTypes.object.isRequired,
-    setNavState: PropTypes.func.isRequired,
     catalog: PropTypes.object.isRequired,
 };
