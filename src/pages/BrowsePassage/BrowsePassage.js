@@ -86,7 +86,7 @@ export default function BrowsePassage({pkState, navState}) {
                         >
                             <IonIcon icon={options} />
                         </IonButton>
-                        <IonLabel position="floating">Bible reference</IonLabel>
+                        <IonLabel position="floating" color="primary">Bible reference</IonLabel>
                         <IonInput
                                 value={reference}
                                 onIonChange={e => setReference(e.target.value)}
@@ -98,9 +98,9 @@ export default function BrowsePassage({pkState, navState}) {
                         />
                         <InputDisplay parseR={parseResult} name="bibleReference" slot="end" />
                     </IonItem>
-                    {showOptions && <BrowsePassageOptions  
-                        displayMode={displayMode} 
-                        setDisplayMode={setDisplayMode} 
+                    {showOptions && <BrowsePassageOptions
+                        displayMode={displayMode}
+                        setDisplayMode={setDisplayMode}
                     />}
                     <PassageResults
                         reference={reference}

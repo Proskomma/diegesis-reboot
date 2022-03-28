@@ -7,28 +7,28 @@ export default function BrowsePassageOptions({displayMode, setDisplayMode}) {
 
     return <>
         <IonItem>
-            <IonLabel for={showAllBibles} >Show all Bibles</IonLabel>
+            <IonLabel for={showAllBibles} color="secondary">Show all Bibles</IonLabel>
             <IonToggle value={showAllBibles} onIonChange={() => setShowAllBibles(!showAllBibles)} />
         </IonItem>
         <IonRadioGroup value={displayMode} onIonChange={e => setDisplayMode(e.detail.value)}>
             {!showAllBibles &&<IonItem>
-                <IonLabel>Show verses</IonLabel>
+                <IonLabel color="secondary">Show verses</IonLabel>
                 <IonRadio value="versesForOneVersion" />
             </IonItem>}
             {showAllBibles && <IonItem>
-                <IonLabel>Group by version, show verses</IonLabel>
+                <IonLabel color="secondary">Group by version, show verses</IonLabel>
                 <IonRadio value="versesByVersion" />
             </IonItem>}
             {showAllBibles && <IonItem>
-                <IonLabel>Group by verse</IonLabel>
+                <IonLabel color="secondary">Group by verse</IonLabel>
                 <IonRadio value="versesByVerse" />
             </IonItem>}
             {!showAllBibles && <IonItem>
-                <IonLabel>Show paragraphs</IonLabel>
+                <IonLabel color="secondary">Show paragraphs</IonLabel>
                 <IonRadio value="blocksForOneVersion" />
             </IonItem>}
             {showAllBibles && <IonItem>
-                <IonLabel>Group by version, show paragraphs</IonLabel>
+                <IonLabel color="secondary">Group by version, show paragraphs</IonLabel>
                 <IonRadio value="blocksByVersion" />
             </IonItem>}
         </IonRadioGroup>
