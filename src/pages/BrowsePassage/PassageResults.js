@@ -30,7 +30,9 @@ export default function PassageResults({reference, parseResult, docSets, display
         return <PassageByBlocks docSets={docSets} displayFlags={displayFlags} displayMode={displayMode} navState={navState} />;
     }   else {    // by Verse
          if (!displayFlags[displayMode].allDocSets && !displayFlags[displayMode].groupVerses){
-            return docSets.map((ds, n) => <PassageByVersion docSet={ds} keyPrefix={n} key={n} />);
+            return docSets
+            .filter(ds => ds.document)
+            .map((ds, n) => <PassageByVersion docSet={ds} keyPrefix={n} key={n} />);
         } else if (displayFlags[displayMode].allDocSets && !displayFlags[displayMode].groupVerses) {
             return <PassageByVersions docSets={docSets} />;
         } else if(displayFlags[displayMode].allDocSets && displayFlags[displayMode].groupVerses){
