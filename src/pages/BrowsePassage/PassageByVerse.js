@@ -5,7 +5,9 @@ import {IonList, IonListHeader, IonItem} from '@ionic/react';
 export default function PassageByVerse({cvArray, docSets}) {
     return cvArray.map((cv, n) => <IonList key={n}>
             <IonListHeader>{cv[0].split("/")[1]}:{cv[1].split("/")[1]}</IonListHeader>
-            {docSets.map((ds, n2) => <IonList key={n2}>
+            {docSets
+            .filter(ds => ds.document)
+            .map((ds, n2) => <IonList key={n2}>
                     <IonItem>
                         {ds.id}
                     </IonItem>
