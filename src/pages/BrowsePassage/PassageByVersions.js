@@ -5,7 +5,7 @@ import PassageByVersion from "./PassageByVersion";
 
 export default function PassageByVersions({docSets}) {
 
-    return docSets?.map(
+    return docSets?.filter(ds => ds.document).map(
             (ds, n) => <IonList key={n}><IonListHeader class="mainContentTitle2">{ds.id}</IonListHeader>
                     <PassageByVersion docSet={ds} keyPrefix={n} key={n} />
             </IonList>
