@@ -1,18 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import {IonList, IonListHeader, IonItem} from '@ionic/react';
+import {IonList, IonListHeader, IonItem, IonText} from '@ionic/react';
 
 export default function PassageByVerse({cvArray, docSets}) {
     return cvArray.map((cv, n) => <IonList key={n}>
-            <IonListHeader>{cv[0].split("/")[1]}:{cv[1].split("/")[1]}</IonListHeader>
-            {docSets
-            .filter(ds => ds.document)
-            .map((ds, n2) => <IonList key={n2}>
+            <IonListHeader class="mainContentTitle2">{cv[0].split("/")[1]}:{cv[1].split("/")[1]}</IonListHeader>
+            {docSets.filter(ds => ds.document).map((ds, n2) => <IonList key={n2}>
                     <IonItem>
-                        {ds.id}
-                    </IonItem>
-                    <IonItem>
-                        {ds.document.cv[n].text}
+                        <IonText>
+                            <IonText class="cv">{ds.id}</IonText> <IonText>{ds.document.cv[n].text}</IonText>
+                        </IonText>
                     </IonItem>
                 </IonList>
             )}
