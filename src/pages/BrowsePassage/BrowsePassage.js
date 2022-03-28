@@ -16,7 +16,6 @@ export default function BrowsePassage({pkState, navState}) {
     const [parsedReference, setParsedReference] = useState('3JN 1:1-3');
     const [parseResult, setParseResult] = useState({});
     const [showOptions, setShowOptions] = useState(false);
-    const [showAllBibles, setShowAllBibles] = useState(false);
     const displayFlags = {
         versesForOneVersion: {allDocSets: false, groupVerses: false, byBlock: false},
         versesByVersion: {allDocSets: true, groupVerses: false, byBlock: false},
@@ -102,8 +101,6 @@ export default function BrowsePassage({pkState, navState}) {
                     {showOptions && <BrowsePassageOptions  
                         displayMode={displayMode} 
                         setDisplayMode={setDisplayMode} 
-                        showAllBibles={showAllBibles} 
-                        setShowAllBibles={setShowAllBibles} 
                     />}
                     <PassageResults
                         reference={reference}
