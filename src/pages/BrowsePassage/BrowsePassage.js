@@ -99,13 +99,12 @@ export default function BrowsePassage({pkState, navState}) {
                         />
                         <InputDisplay parseR={parseResult} name="bibleReference" slot="end" />
                     </IonItem>
-                    <BrowsePassageOptions 
-                        showOptions={showOptions} 
+                    {showOptions && <BrowsePassageOptions  
                         displayMode={displayMode} 
                         setDisplayMode={setDisplayMode} 
                         showAllBibles={showAllBibles} 
                         setShowAllBibles={setShowAllBibles} 
-                    />
+                    />}
                     <PassageResults
                         reference={reference}
                         parseResult={parseResult}

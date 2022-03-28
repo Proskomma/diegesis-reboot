@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import {IonLabel, IonRadioGroup, IonRadio, IonItem, IonToggle} from '@ionic/react';
 
-export default function BrowsePassageOptions({showOptions, displayMode, setDisplayMode, showAllBibles, setShowAllBibles}) {
-    return showOptions && 
-        <><IonItem>
+export default function BrowsePassageOptions({displayMode, setDisplayMode, showAllBibles, setShowAllBibles}) {
+    return <>
+        <IonItem>
             <IonLabel for={showAllBibles} >Show all Bibles</IonLabel>
             <IonToggle value={showAllBibles} onIonChange={() => setShowAllBibles(!showAllBibles)} />
         </IonItem>
@@ -34,7 +34,6 @@ export default function BrowsePassageOptions({showOptions, displayMode, setDispl
 }
 
 BrowsePassageOptions.propTypes = {
-    showOptions: PropTypes.bool.isRequired,
     displayMode: PropTypes.string.isRequired,
     setDisplayMode: PropTypes.func.isRequired,
     showAllBibles: PropTypes.bool.isRequired,
