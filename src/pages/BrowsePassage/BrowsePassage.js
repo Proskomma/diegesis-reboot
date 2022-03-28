@@ -103,23 +103,23 @@ export default function BrowsePassage({pkState, navState}) {
                     {showOptions &&
                     <IonRadioGroup value={displayMode} onIonChange={e => setDisplayMode(e.detail.value)}>
                         {!showAllBibles &&<IonItem>
-                            <IonLabel>One Version</IonLabel>
+                            <IonLabel>Show verses</IonLabel>
                             <IonRadio value="versesForOneVersion" />
                         </IonItem>}
                         {showAllBibles && <IonItem>
-                            <IonLabel>By Version</IonLabel>
+                            <IonLabel>Group by version, show verses</IonLabel>
                             <IonRadio value="versesByVersion" />
                         </IonItem>}
                         {showAllBibles && <IonItem>
-                            <IonLabel>By Verse</IonLabel>
+                            <IonLabel>Group by verse</IonLabel>
                             <IonRadio value="versesByVerse" />
                         </IonItem>}
                         {!showAllBibles && <IonItem>
-                            <IonLabel>Blocks For One Version</IonLabel>
+                            <IonLabel>Show paragraphs</IonLabel>
                             <IonRadio value="blocksForOneVersion" />
                         </IonItem>}
                         {showAllBibles && <IonItem>
-                            <IonLabel>Blocks By Version</IonLabel>
+                            <IonLabel>Group by version, show paragraphs</IonLabel>
                             <IonRadio value="blocksByVersion" />
                         </IonItem>}
                     </IonRadioGroup>
