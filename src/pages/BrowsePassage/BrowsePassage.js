@@ -1,11 +1,12 @@
 import React, {useState, useEffect} from "react";
 import {useQuery} from "proskomma-react-hooks";
 import PropTypes from "prop-types";
-import {IonContent, IonPage, IonInput, IonLabel, IonRadioGroup, IonRadio, IonList, IonItem, IonIcon, IonButton, IonToggle} from '@ionic/react';
+import {IonContent, IonPage, IonInput, IonLabel, IonList, IonItem, IonIcon, IonButton} from '@ionic/react';
 import {options} from 'ionicons/icons';
 import PageHeader2 from "../../components/PageHeader2";
 import parseReferenceString from "./parseReferenceString";
 import PassageResults from "./PassageResults";
+import BrowsePassageOptions from "./BrowsePassageOptions";
 import "./BrowsePassage.css";
 import InputDisplay from "./InputDisplay";
 
@@ -96,34 +97,15 @@ export default function BrowsePassage({pkState, navState}) {
                                 max="100"
                                 maxlength="20"
                         />
-                        <IonLabel for={showAllBibles} >Show all Bibles</IonLabel>
-                        <IonToggle value={showAllBibles} onIonChange={() => setShowAllBibles(!showAllBibles)} />
                         <InputDisplay parseR={parseResult} name="bibleReference" slot="end" />
                     </IonItem>
-                    {showOptions &&
-                    <IonRadioGroup value={displayMode} onIonChange={e => setDisplayMode(e.detail.value)}>
-                        {!showAllBibles &&<IonItem>
-                            <IonLabel>Show verses</IonLabel>
-                            <IonRadio value="versesForOneVersion" />
-                        </IonItem>}
-                        {showAllBibles && <IonItem>
-                            <IonLabel>Group by version, show verses</IonLabel>
-                            <IonRadio value="versesByVersion" />
-                        </IonItem>}
-                        {showAllBibles && <IonItem>
-                            <IonLabel>Group by verse</IonLabel>
-                            <IonRadio value="versesByVerse" />
-                        </IonItem>}
-                        {!showAllBibles && <IonItem>
-                            <IonLabel>Show paragraphs</IonLabel>
-                            <IonRadio value="blocksForOneVersion" />
-                        </IonItem>}
-                        {showAllBibles && <IonItem>
-                            <IonLabel>Group by version, show paragraphs</IonLabel>
-                            <IonRadio value="blocksByVersion" />
-                        </IonItem>}
-                    </IonRadioGroup>
-                    }
+                    <BrowsePassageOptions 
+                        showOptions={showOptions} 
+                        displayMode={displayMode} 
+                        setDisplayMode={setDisplayMode} 
+                        showAllBibles={showAllBibles} 
+                        setShowAllBibles={setShowAllBibles} 
+                    />
                     <PassageResults
                         reference={reference}
                         parseResult={parseResult}
