@@ -1,7 +1,8 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
-import {IonList, IonItem, IonText, IonInput, IonLabel, IonToggle } from "@ionic/react";
+import {IonList, IonItem, IonInput, IonLabel, IonToggle } from "@ionic/react";
 import { useSearchForPassages } from "proskomma-react-hooks";
+import SearchResults from "./SearchResults";
 
 export default function SideMenuSearch({pkState, navState}) {
 
@@ -9,27 +10,6 @@ export default function SideMenuSearch({pkState, navState}) {
     const [displayMode, setDisplayMode] = useState(false);
 
     const verbose = true;
-
-    const searchResultRows = (p) => {
-
-        if (!searchText) {
-            return <IonItem>
-                    <IonText>Please enter some search text</IonText>
-                </IonItem>;
-        } else if (p.length < 1) {
-            return <IonItem>
-            <IonText>No text found</IonText>
-        </IonItem>;
-    } else {
-            return p.map((p, n) => <IonList key={n}>
-                    <IonItem>
-                        <IonText class="hanging">
-                            <IonText class="cv">{p.reference}</IonText> <IonText>{p.text}</IonText>
-                        </IonText>
-                    </IonItem>
-            </IonList>)
-        }
-    }
 
     const {
         // stateId: searchStateId,
@@ -47,8 +27,6 @@ export default function SideMenuSearch({pkState, navState}) {
         tokens: false,
         verbose,
     });
-
-    const resultRows = searchResultRows(passages);
 
     return <IonList>
                 <IonItem>
@@ -68,7 +46,7 @@ export default function SideMenuSearch({pkState, navState}) {
                     <IonLabel position="relative">Show blocks:</IonLabel>
                     <IonToggle slot="end" onIonChange={() => setDisplayMode(!displayMode)}></IonToggle>
                 </IonItem>
-                {resultRows}
+                <SearchResults p={passages} searchText={searchText} />
             </IonList>
 }
 
