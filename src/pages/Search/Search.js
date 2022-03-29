@@ -26,8 +26,9 @@ export default function Search({pkState, navState}) {
     } else {
             return p.map((p, n) => <IonList key={n}>
                     <IonItem>
-                        <IonLabel slot="start" class="cv">{p.reference}</IonLabel>
-                        <IonText>{p.text}</IonText>
+                        <IonText class="hanging">
+                            <IonText class="cv">{p.reference}</IonText> <IonText>{p.text}</IonText>
+                        </IonText>
                     </IonItem>
             </IonList>)
         }
