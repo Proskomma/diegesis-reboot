@@ -1,12 +1,12 @@
 import React, {useState} from "react";
 import PropTypes from "prop-types";
-import {IonPage, IonContent, IonGrid, IonRow, IonCol, IonInput, IonLabel, IonToggle } from "@ionic/react";
-import PageHeader from "../../components/PageHeader";
+import {IonPage, IonContent, IonList, IonItem, IonText, IonInput, IonLabel, IonToggle } from "@ionic/react";
+import PageHeader2 from "../../components/PageHeader2";
 import { useSearchForPassages } from "proskomma-react-hooks";
 
 import "./Search.css";
 
-export default function Search({pkState, navState, setNavState, catalog}) {
+export default function Search({pkState, navState}) {
 
     const [searchText, setSearchText] = useState('');
     const [displayMode, setDisplayMode] = useState(false);
@@ -16,18 +16,20 @@ export default function Search({pkState, navState, setNavState, catalog}) {
     const searchResultRows = (p) => {
 
         if (!searchText) {
-            return <IonRow>
-                <IonCol size={12}>Please enter some search text</IonCol>
-            </IonRow>;
+            return <IonItem>
+                    <IonText>Please enter some search text</IonText>
+                </IonItem>;
         } else if (p.length < 1) {
-            return <IonRow>
-                 <IonCol size={12}>No text found</IonCol>
-             </IonRow>;
+            return <IonItem>
+            <IonText>No text found</IonText>
+        </IonItem>;
     } else {
-            return p.map((p, n) => <IonRow key={n}>
-                <IonCol size={1}>{p.reference}</IonCol>
-                <IonCol size={11}>{p.text}</IonCol>
-            </IonRow>)
+            return p.map((p, n) => <IonList key={n}>
+                    <IonItem>
+                        <IonLabel slot="start" class="cv">{p.reference}</IonLabel>
+                        <IonText>{p.text}</IonText>
+                    </IonItem>
+            </IonList>)
         }
     }
 
@@ -52,35 +54,28 @@ export default function Search({pkState, navState, setNavState, catalog}) {
 
     return (
         <IonPage>
-            <PageHeader
-                title="Search"
-                navState={navState}
-                setNavState={setNavState}
-                catalog={catalog}
-            />
+            <PageHeader2 title="Search" />
             <IonContent>
-                <IonGrid>
-                    <IonRow>
-                        <IonCol size={1}>
-                            <IonLabel position="floating">Search: </IonLabel>
-                        </IonCol>
-                        <IonCol size={2}>
+                <IonList>
+                        <IonItem>
+                            <IonLabel position="floating" color="primary">Search: </IonLabel>
                             <IonInput
+                                value={searchText} 
                                 size='small'
-                                className='search'
-                                text-wrap
-                                value={searchText}
                                 onIonChange={(e)=>setSearchText(e.target.value)}
+                                type="searchInput"
+                                name="search"
                                 debounce={500}
+                                max="100"
+                                maxlength="20"
                             />
-                        </IonCol>
-                        <IonCol size={8}>
+                        </IonItem>
+                        <IonItem>
                             <IonLabel position="relative">Show blocks:</IonLabel>
-                            <IonToggle onIonChange={() => setDisplayMode(!displayMode)}></IonToggle>
-                        </IonCol>
-                    </IonRow>
-                    {resultRows}
-                </IonGrid>
+                            <IonToggle slot="end" onIonChange={() => setDisplayMode(!displayMode)}></IonToggle>
+                        </IonItem>
+                        {resultRows}
+                </IonList>
             </IonContent>
         </IonPage>
     );
