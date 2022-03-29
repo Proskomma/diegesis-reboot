@@ -74,5 +74,5 @@ export default function SideMenuSearch({pkState, navState}) {
 
 SideMenuSearch.propTypes = {
     pkState: PropTypes.object.isRequired,
-    navState: PropTypes.func.isRequired,
+    navState: PropTypes.object.isRequired,
 };
