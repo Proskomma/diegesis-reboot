@@ -11,10 +11,9 @@ import {
 } from '@ionic/react';
 import {IonReactRouter} from '@ionic/react-router';
 import {useProskomma} from 'proskomma-react-hooks';
-import {reader, book, search} from 'ionicons/icons';
+import {reader, book} from 'ionicons/icons';
 import BrowseBook from './pages/BrowseBook/BrowseBook';
 import BrowsePassage from './pages/BrowsePassage/BrowsePassage';
-import Search from './pages/Search/Search';
 import {nt_ebible_27book as frozen} from 'proskomma-frozen-archives';
 import {useCatalog} from 'proskomma-react-hooks';
 import {thaw} from 'proskomma-freeze';
@@ -72,7 +71,7 @@ const App = () => {
 
     return (
         <IonApp>
-            <SideMenu catalog={catalog} navState={navState} setNavState={setNavState} />
+            <SideMenu catalog={catalog} pkState={pkState} navState={navState} setNavState={setNavState} />
             <IonReactRouter>
                 <IonTabs>
                     <IonRouterOutlet id="main">
@@ -86,14 +85,6 @@ const App = () => {
                         </Route>
                         <Route path="/tabs/browsePassage">
                             <BrowsePassage
-                                catalog={catalog}
-                                pkState={pkState}
-                                navState={navState}
-                                setNavState={setNavState}
-                            />
-                        </Route>
-                        <Route path="/tabs/search">
-                            <Search
                                 catalog={catalog}
                                 pkState={pkState}
                                 navState={navState}
@@ -118,13 +109,6 @@ const App = () => {
                             data-test-id="tab-bar-button-tab2"
                         >
                             <IonIcon icon={reader} />
-                        </IonTabButton>
-                        <IonTabButton
-                            tab="search"
-                            href="/tabs/search"
-                            data-test-id="tab-bar-button-tab3"
-                        >
-                            <IonIcon icon={search} />
                         </IonTabButton>
                     </IonTabBar>
                 </IonTabs>

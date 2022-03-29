@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {IonContent, IonPage, IonInput, IonLabel, IonList, IonItem, IonIcon, IonButton} from '@ionic/react';
 import {options} from 'ionicons/icons';
 import PageHeader2 from "../../components/PageHeader2";
-import parseReferenceString from "./parseReferenceString";
+import parseReferenceString from "../../components/parseReferenceString";
 import PassageResults from "./PassageResults";
 import BrowsePassageOptions from "./BrowsePassageOptions";
 import "./BrowsePassage.css";

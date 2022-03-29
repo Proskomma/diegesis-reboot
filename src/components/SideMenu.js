@@ -5,7 +5,7 @@ import SideMenuNavigation from "./SideMenuNavigation";
 import SideMenuSearch from "./SideMenuSearch";
 import {albums, albumsOutline, search, searchOutline} from 'ionicons/icons';
 
-export default function SideMenu({catalog, navState, setNavState}) {
+export default function SideMenu({catalog, pkState, navState, setNavState}) {
 
     const [selected, setSelected] = useState('navigation');
 
@@ -27,13 +27,14 @@ export default function SideMenu({catalog, navState, setNavState}) {
         </IonHeader>
         <IonContent>
             {selected === 'navigation' && <SideMenuNavigation catalog={catalog} navState={navState} setNavState={setNavState} />}
-            {selected === 'search' && <SideMenuSearch catalog={catalog} navState={navState} setNavState={setNavState} />}
+            {selected === 'search' && <SideMenuSearch pkState={pkState} navState={navState} setNavState={setNavState} />}
         </IonContent>
     </IonMenu>
 }
 
 SideMenu.propTypes = {
+    catalog: PropTypes.object.isRequired,
+    pkState: PropTypes.object.isRequired,
     navState: PropTypes.object.isRequired,
     setNavState: PropTypes.func.isRequired,
-    catalog: PropTypes.object.isRequired,
 };
