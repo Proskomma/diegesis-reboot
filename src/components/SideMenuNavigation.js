@@ -1,16 +1,18 @@
 import {IonAccordionGroup, IonList, IonListHeader, IonItem} from "@ionic/react";
+import {menuController} from '@ionic/core/components';
 import VersionsAccordion from "./VersionsAccordion";
 import React from "react";
 import PropTypes from "prop-types";
 
 export default function SideMenuNavigation({catalog, navState, setNavState}) {
 
-    const chapterClick = (e) => {
+    const chapterClick = async e => {
         const element = e?.target;
         const docSetId = element?.getAttribute("doc");
         const bookCode = element?.getAttribute("book");
         const chapter = parseInt(element?.getAttribute("chapter"));
         setNavState((prevState) => ({...prevState, docSetId: docSetId, bookCode: bookCode, chapter: chapter}));
+        await menuController.close();
     };
 
     return <IonList>

@@ -1,13 +1,14 @@
 import React from 'react';
-import { IonHeader, IonToolbar, IonTitle } from '@ionic/react';
+import {IonHeader, IonToolbar, IonTitle, IonMenuButton} from '@ionic/react';
 import PropTypes from 'prop-types';
 
-export default function PageHeader2({ title}) {
+export default function PageHeader2({title}) {
 
     return (
         <IonHeader>
             <IonToolbar color="primary">
-                    <IonTitle class="headerTitle">{title}</IonTitle>
+                <IonMenuButton slot="start" />
+                <IonTitle class="headerTitle">{title}</IonTitle>
             </IonToolbar>
         </IonHeader>
     );
