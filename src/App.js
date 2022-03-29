@@ -72,7 +72,7 @@ const App = () => {
 
     return (
         <IonApp>
-            <SideMenu catalog={catalog} navState={navState} setNavState={setNavState} />
+            <SideMenu catalog={catalog} pkState={pkState} navState={navState} setNavState={setNavState} />
             <IonReactRouter>
                 <IonTabs>
                     <IonRouterOutlet id="main">
