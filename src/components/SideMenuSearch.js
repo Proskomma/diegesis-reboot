@@ -4,7 +4,7 @@ import {IonList, IonItem, IonInput, IonLabel, IonToggle } from "@ionic/react";
 import { useSearchForPassages } from "proskomma-react-hooks";
 import SearchResults from "./SearchResults";
 
-export default function SideMenuSearch({pkState, navState}) {
+export default function SideMenuSearch({pkState, navState, setNavState}) {
 
     const [searchText, setSearchText] = useState('');
     const [displayMode, setDisplayMode] = useState(false);
@@ -46,11 +46,12 @@ export default function SideMenuSearch({pkState, navState}) {
                     <IonLabel position="relative">Show blocks:</IonLabel>
                     <IonToggle slot="end" onIonChange={() => setDisplayMode(!displayMode)}></IonToggle>
                 </IonItem>
-                <SearchResults p={passages} searchText={searchText} />
+                <SearchResults p={passages} searchText={searchText} navState={navState} setNavState={setNavState} />
             </IonList>
 }
 
 SideMenuSearch.propTypes = {
     pkState: PropTypes.object.isRequired,
     navState: PropTypes.object.isRequired,
+    setNavState: PropTypes.func.isRequired,
 };

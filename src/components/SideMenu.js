@@ -27,7 +27,7 @@ export default function SideMenu({catalog, pkState, navState, setNavState}) {
         </IonHeader>
         <IonContent>
             {selected === 'navigation' && <SideMenuNavigation catalog={catalog} navState={navState} setNavState={setNavState} />}
-            {selected === 'search' && <SideMenuSearch pkState={pkState} navState={navState} />}
+            {selected === 'search' && <SideMenuSearch pkState={pkState} navState={navState} setNavState={setNavState} />}
         </IonContent>
     </IonMenu>
 }
