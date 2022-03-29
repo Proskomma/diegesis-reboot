@@ -1,5 +1,7 @@
 .idea/
 build/
+android/.gradle
+android/src/main/assets/public
 
 # Logs
 logs
