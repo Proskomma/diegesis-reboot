@@ -41,9 +41,12 @@ import './theme/variables.css';
 import {useState} from 'react';
 import SideMenu from "./components/SideMenu";
 
+import {AppLangProvider} from './contexts/AppLang';
+
 setupIonicReact();
 
 const App = () => {
+
     const initialState = {
         docSetId: 'xyz-fra_lsg',
         bookCode: '3JN',
@@ -71,6 +74,7 @@ const App = () => {
 
     return (
         <IonApp>
+            <AppLangProvider value="en">
             <SideMenu catalog={catalog} pkState={pkState} navState={navState} setNavState={setNavState} />
             <IonReactRouter>
                 <IonTabs>
@@ -113,6 +117,7 @@ const App = () => {
                     </IonTabBar>
                 </IonTabs>
             </IonReactRouter>
+            </AppLangProvider>
         </IonApp>
     );
 };

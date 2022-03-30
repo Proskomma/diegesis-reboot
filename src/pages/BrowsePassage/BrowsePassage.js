@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useEffect, useContext } from "react";
 import {useQuery} from "proskomma-react-hooks";
 import PropTypes from "prop-types";
 import {IonContent, IonPage, IonInput, IonLabel, IonList, IonItem, IonIcon, IonButton} from '@ionic/react';
@@ -8,8 +8,12 @@ import PassageResults from "./PassageResults";
 import BrowsePassageOptions from "./BrowsePassageOptions";
 import "./BrowsePassage.css";
 import InputDisplay from "./InputDisplay";
+import i18n from '../../lib/i18n';
+import AppLangContext from "../../contexts/AppLang";
 
 export default function BrowsePassage({pkState, navState}) {
+
+    const appLang = useContext(AppLangContext);
 
     const [reference, setReference] = useState('3JN 1:1-3');
     const [parsedReference, setParsedReference] = useState('3JN 1:1-3');
@@ -84,7 +88,7 @@ export default function BrowsePassage({pkState, navState}) {
                         >
                             <IonIcon icon={options} />
                         </IonButton>
-                        <IonLabel position="floating" color="primary">Bible reference</IonLabel>
+                        <IonLabel position="floating" color="primary">{i18n(appLang, 'browse_passage_bible_reference')}</IonLabel>
                         <IonInput
                                 value={reference}
                                 onIonChange={e => setReference(e.target.value)}
