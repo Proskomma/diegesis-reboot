@@ -74,7 +74,7 @@ const App = () => {
 
     return (
         <IonApp>
-            <AppLangProvider value="es">
+            <AppLangProvider value="en">
             <SideMenu catalog={catalog} pkState={pkState} navState={navState} setNavState={setNavState} />
             <IonReactRouter>
                 <IonTabs>

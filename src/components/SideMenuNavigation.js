@@ -1,10 +1,14 @@
 import {IonAccordionGroup, IonList, IonListHeader, IonItem} from "@ionic/react";
 import {menuController} from '@ionic/core/components';
 import VersionsAccordion from "./VersionsAccordion";
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types";
+import i18n from '../lib/i18n';
+import AppLangContext from "../contexts/AppLang";
 
 export default function SideMenuNavigation({catalog, navState, setNavState}) {
+    
+    const appLang = useContext(AppLangContext);
 
     const chapterClick = async e => {
         const element = e?.target;
@@ -16,7 +20,7 @@ export default function SideMenuNavigation({catalog, navState, setNavState}) {
     };
 
     return <IonList>
-        <IonListHeader class="headerTitle">{`${catalog.nDocuments} books in ${catalog.nDocSets} Bibles`}</IonListHeader>
+        <IonListHeader class="headerTitle">{`${catalog.nDocuments} ${i18n(appLang, 'books_in')} ${catalog.nDocSets} ${i18n(appLang, 'bibles')}`}</IonListHeader>
         <IonItem>
             <IonAccordionGroup expand="inset" value={navState.docSetId}>
                 {catalog.docSets && catalog.docSets.map((ds, n) => <VersionsAccordion

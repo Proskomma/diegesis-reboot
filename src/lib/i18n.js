@@ -7,6 +7,8 @@ const i18nTables = {
         group_verse: "Group by verse",
         show_paragraphs: "Show paragraphs",
         group_version_show_paragraphs: "Group by version, show paragraphs",
+        books_in: "books in",
+        bibles: "Bibles",
     },
     fr: {
         browse_passage_bible_reference: "Référence Biblique",
@@ -19,6 +21,8 @@ const i18nTables = {
         group_verse: "Agrupar por verso",
         show_paragraphs: "Mostrar párrafos",
         group_version_show_paragraphs: "Agrupar por versión, mostrar párrafos",
+        books_in: "libros en",
+        bibles: "Biblias",
     },
 };
 

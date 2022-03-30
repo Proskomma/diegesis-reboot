@@ -6,6 +6,7 @@ import BrowseDocumentModel from './BrowseDocumentModel';
 import './BrowseBook.css';
 
 export default function BrowseBook({ pkState, navState, catalog }) {
+
     const [renderedSequence, setRenderedSequence] = useState(null);
 
     useEffect(() => {
