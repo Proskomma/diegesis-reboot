@@ -9,6 +9,10 @@ const i18nTables = {
         group_version_show_paragraphs: "Group by version, show paragraphs",
         books_in: "books in",
         bibles: "Bibles",
+        search: "Search: ",
+        show_blocks: "Show blocks:",
+        enter_search_text: "Please enter some search text",
+        no_text_found: "No text found",
     },
     fr: {
         browse_passage_bible_reference: "Référence Biblique",
@@ -23,6 +27,10 @@ const i18nTables = {
         group_version_show_paragraphs: "Agrupar por versión, mostrar párrafos",
         books_in: "libros en",
         bibles: "Biblias",
+        search: "Buscar: ",
+        show_blocks: "Mostrar bloques:",
+        enter_search_text: "Por favor, ingrese el texto de búsqueda",
+        no_text_found: "No se encontró ningún texto"
     },
 };
 
