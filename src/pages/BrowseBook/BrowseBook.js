@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { IonContent, IonPage, IonList, IonItem, IonText } from '@ionic/react';
-import PageHeader2 from '../../components/PageHeader2';
 import { ScriptureDocSet, ScriptureParaModel, ScriptureParaModelQuery } from 'proskomma-render';
 import BrowseDocumentModel from './BrowseDocumentModel';
 import './BrowseBook.css';
@@ -40,7 +39,6 @@ export default function BrowseBook({ pkState, navState, catalog }) {
     }, [pkState.stateId, navState.docSetId, navState.bookCode, catalog?.docSets]);
     return (
         <IonPage>
-            <PageHeader2 title="Browse Book" />
             <IonContent>
                 <IonList>
                         <IonItem>
