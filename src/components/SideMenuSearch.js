@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 import PropTypes from "prop-types";
-import {IonList, IonItem, IonInput, IonLabel, IonToggle } from "@ionic/react";
+import {IonList, IonItem, IonSearchbar, IonLabel, IonToggle } from "@ionic/react";
 import { useSearchForPassages } from "proskomma-react-hooks";
 import SearchResults from "./SearchResults";
+import i18n from '../lib/i18n';
+import AppLangContext from "../contexts/AppLang";
 
 export default function SideMenuSearch({pkState, navState, setNavState}) {
+
+    const appLang = useContext(AppLangContext);
 
     const [searchText, setSearchText] = useState('');
     const [displayMode, setDisplayMode] = useState(false);
@@ -30,20 +34,15 @@ export default function SideMenuSearch({pkState, navState, setNavState}) {
 
     return <IonList>
                 <IonItem>
-                    <IonLabel position="floating" color="primary">Search: </IonLabel>
-                    <IonInput
+                    <IonSearchbar
                         value={searchText} 
                         size='small'
                         onIonChange={(e)=>setSearchText(e.target.value)}
-                        type="searchInput"
-                        name="search"
                         debounce={500}
-                        max="100"
-                        maxlength="20"
                     />
                 </IonItem>
                 <IonItem>
-                    <IonLabel position="relative">Show blocks:</IonLabel>
+                    <IonLabel position="relative">{i18n(appLang, 'show_blocks')}</IonLabel>
                     <IonToggle slot="end" onIonChange={() => setDisplayMode(!displayMode)}></IonToggle>
                 </IonItem>
                 <SearchResults p={passages} searchText={searchText} navState={navState} setNavState={setNavState} />
