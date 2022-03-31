@@ -13,6 +13,7 @@ const i18nTables = {
         show_blocks: "Show paragraphs:",
         enter_search_text: "Please enter some search text",
         no_text_found: "No text found",
+        passage: "Passage",
     },
     fr: {
         browse_passage_bible_reference: "Référence Biblique",
@@ -28,6 +29,7 @@ const i18nTables = {
         show_blocks: "Afficher paragraphes:",
         enter_search_text: "Taper un ou des mots à chercher",
         no_text_found: "Aucun contenu retrouvé",
+        passage: "Passage",
     },
     es: {
         browse_passage_bible_reference: "Referencia Bíblica",
@@ -43,6 +45,7 @@ const i18nTables = {
         show_blocks: "Mostrar párrafos:",
         enter_search_text: "Por favor, ingrese el texto de búsqueda",
         no_text_found: "No se encontró ningún texto",
+        passage: "Pasaje",
     },
 };
 
