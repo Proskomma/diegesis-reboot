@@ -1,6 +1,6 @@
 import React, {useState, useContext} from "react";
 import PropTypes from "prop-types";
-import {IonList, IonItem, IonInput, IonLabel, IonToggle } from "@ionic/react";
+import {IonList, IonItem, IonSearchbar, IonLabel, IonToggle } from "@ionic/react";
 import { useSearchForPassages } from "proskomma-react-hooks";
 import SearchResults from "./SearchResults";
 import i18n from '../lib/i18n';
@@ -34,16 +34,11 @@ export default function SideMenuSearch({pkState, navState, setNavState}) {
 
     return <IonList>
                 <IonItem>
-                    <IonLabel position="floating" color="primary">{i18n(appLang, 'search')}</IonLabel>
-                    <IonInput
+                    <IonSearchbar
                         value={searchText} 
                         size='small'
                         onIonChange={(e)=>setSearchText(e.target.value)}
-                        type="searchInput"
-                        name="search"
                         debounce={500}
-                        max="100"
-                        maxlength="20"
                     />
                 </IonItem>
                 <IonItem>

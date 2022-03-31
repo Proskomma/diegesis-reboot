@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { IonContent, IonPage, IonList, IonItem, IonText } from '@ionic/react';
+import { IonList, IonItem, IonText } from '@ionic/react';
 import { ScriptureDocSet, ScriptureParaModel, ScriptureParaModelQuery } from 'proskomma-render';
 import BrowseDocumentModel from './BrowseDocumentModel';
 import './BrowseBook.css';
@@ -39,15 +39,11 @@ export default function BrowseBook({ pkState, navState, catalog }) {
         }
     }, [pkState.stateId, navState.docSetId, navState.bookCode, catalog?.docSets]);
     return (
-        <IonPage>
-            <IonContent>
                 <IonList>
                         <IonItem>
                             <IonText>{renderedSequence}</IonText>
                         </IonItem>
                 </IonList>
-            </IonContent>
-        </IonPage>
     );
 }
 

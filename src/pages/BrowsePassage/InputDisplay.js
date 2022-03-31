@@ -1,21 +1,21 @@
 import React from "react";
 import PropTypes from "prop-types";
 import {IonIcon} from '@ionic/react';
-import { checkmarkCircle, closeCircle } from 'ionicons/icons';
+import { checkmarkCircleOutline, closeCircleOutline } from 'ionicons/icons';
 
 export default function InputDisplay({parseR}) {
     return Object.keys(parseR).length === 0 || parseR.parsed && parseR.startVerse ? 
     <IonIcon 
     size="large" 
     slot="end" 
-    color="success" 
-    icon={checkmarkCircle} 
+    color="light" 
+    icon={checkmarkCircleOutline} 
     /> : 
     <IonIcon 
     size="large" 
     slot="end" 
-    color="danger" 
-    icon={closeCircle} 
+    color="light" 
+    icon={closeCircleOutline} 
     />
 }
 

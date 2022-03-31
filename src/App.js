@@ -1,19 +1,9 @@
 import React, {useEffect} from 'react';
-import {Redirect, Route} from 'react-router-dom';
 import {
     IonApp,
-    IonIcon,
-    IonRouterOutlet,
-    IonTabBar,
-    IonTabButton,
-    IonTabs,
     setupIonicReact,
 } from '@ionic/react';
-import {IonReactRouter} from '@ionic/react-router';
 import {useProskomma} from 'proskomma-react-hooks';
-import {reader, book} from 'ionicons/icons';
-import BrowseBook from './pages/BrowseBook/BrowseBook';
-import BrowsePassage from './pages/BrowsePassage/BrowsePassage';
 import {nt_ebible_27book as frozen} from 'proskomma-frozen-archives';
 import {useCatalog} from 'proskomma-react-hooks';
 import {thaw} from 'proskomma-freeze';
@@ -40,6 +30,7 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import {useState} from 'react';
 import SideMenu from "./components/SideMenu";
+import Browse from "./components/Browse";
 
 import {AppLangProvider} from './contexts/AppLang';
 
@@ -76,48 +67,8 @@ const App = () => {
     return (
         <IonApp>
             <AppLangProvider value={appLanguage}>
-            <SideMenu catalog={catalog} pkState={pkState} navState={navState} setNavState={setNavState} appLanguage={appLanguage} setAppLanguage={setAppLanguage} />
-            <IonReactRouter>
-                <IonTabs>
-                    <IonRouterOutlet id="main">
-                        <Route path="/tabs/browseBook">
-                            <BrowseBook
-                                catalog={catalog}
-                                navState={navState}
-                                setNavState={setNavState}
-                                pkState={pkState}
-                            />
-                        </Route>
-                        <Route path="/tabs/browsePassage">
-                            <BrowsePassage
-                                catalog={catalog}
-                                pkState={pkState}
-                                navState={navState}
-                                setNavState={setNavState}
-                            />
-                        </Route>
-                        <Route exact path="/" >
-                            <Redirect to="/tabs/browsePassage" />
-                        </Route>
-                    </IonRouterOutlet>
-                    <IonTabBar slot="top" color="primary">
-                        <IonTabButton
-                            tab="browseBook"
-                            href="/tabs/browseBook"
-                            data-test-id="tab-bar-button-tab1"
-                        >
-                            <IonIcon icon={book} />
-                        </IonTabButton>
-                        <IonTabButton
-                            tab="browsePassage"
-                            href="/tabs/browsePassage"
-                            data-test-id="tab-bar-button-tab2"
-                        >
-                            <IonIcon icon={reader} />
-                        </IonTabButton>
-                    </IonTabBar>
-                </IonTabs>
-            </IonReactRouter>
+                <SideMenu catalog={catalog} pkState={pkState} navState={navState} setNavState={setNavState} appLanguage={appLanguage} setAppLanguage={setAppLanguage} />
+                <Browse pkState={pkState} navState={navState} catalog={catalog} />
             </AppLangProvider>
         </IonApp>
     );
