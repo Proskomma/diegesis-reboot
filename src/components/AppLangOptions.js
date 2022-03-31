@@ -11,7 +11,7 @@ export default function AppLangOptions({appLanguage, setAppLanguage}) {
                     <IonRadio value="en" />
                 </IonItem>
                 <IonItem>
-                    <IonLabel color="secondary">French</IonLabel>
+                    <IonLabel color="secondary">Français</IonLabel>
                     <IonRadio value="fr" />
                 </IonItem>
                 <IonItem>
