@@ -54,6 +54,7 @@ const App = () => {
         verse: 1,
     };
     const [navState, setNavState] = useState(initialState);
+    const [appLanguage, setAppLanguage] = useState("en");
 
     const verbose = true;
     const pkState = useProskomma({verbose});
@@ -74,8 +75,8 @@ const App = () => {
 
     return (
         <IonApp>
-            <AppLangProvider value="en">
-            <SideMenu catalog={catalog} pkState={pkState} navState={navState} setNavState={setNavState} />
+            <AppLangProvider value={appLanguage}>
+            <SideMenu catalog={catalog} pkState={pkState} navState={navState} setNavState={setNavState} appLanguage={appLanguage} setAppLanguage={setAppLanguage} />
             <IonReactRouter>
                 <IonTabs>
                     <IonRouterOutlet id="main">

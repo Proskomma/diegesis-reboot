@@ -40,9 +40,9 @@ const i18nTables = {
         books_in: "libros en",
         bibles: "Biblias",
         search: "Buscar: ",
-        show_blocks: "Mostrar bloques:",
+        show_blocks: "Mostrar párrafos:",
         enter_search_text: "Por favor, ingrese el texto de búsqueda",
-        no_text_found: "No se encontró ningún texto"
+        no_text_found: "No se encontró ningún texto",
     },
 };
 
