@@ -7,7 +7,7 @@ import i18n from '../lib/i18n';
 import AppLangContext from "../contexts/AppLang";
 
 export default function SideMenuNavigation({catalog, navState, setNavState}) {
-    
+
     const appLang = useContext(AppLangContext);
 
     const chapterClick = async e => {

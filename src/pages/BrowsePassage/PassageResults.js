@@ -14,7 +14,7 @@ export default function PassageResults({reference, parseResult, docSets, display
         return <IonItem>
             Please enter a book reference!
         </IonItem>;
-    } else if (!parseResult.parsed || !parseResult.startVerse) {
+    } else if (!parseResult.parsed) {
         return <IonItem>
             Wrong format!
         </IonItem>;
