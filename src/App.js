@@ -3,9 +3,8 @@ import {
     IonApp,
     setupIonicReact,
 } from '@ionic/react';
-import {useProskomma} from 'proskomma-react-hooks';
+import {useProskomma, useCatalog} from 'proskomma-react-hooks';
 import {nt_ebible_27book as frozen} from 'proskomma-frozen-archives';
-import {useCatalog} from 'proskomma-react-hooks';
 import {thaw} from 'proskomma-freeze';
 
 import './App.css';
@@ -63,7 +62,7 @@ const App = () => {
         verbose: true,
         cv: true,
     });
-
+    
     return (
         <IonApp>
             <AppLangProvider value={appLanguage}>

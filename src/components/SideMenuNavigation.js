@@ -23,7 +23,7 @@ export default function SideMenuNavigation({catalog, navState, setNavState}) {
         <IonListHeader class="headerTitle">{`${catalog.nDocuments} ${i18n(appLang, 'books_in')} ${catalog.nDocSets} ${i18n(appLang, 'bibles')}`}</IonListHeader>
         <IonItem>
             <IonAccordionGroup expand="inset" value={navState.docSetId}>
-                {catalog.docSets && catalog.docSets.map((ds, n) => <VersionsAccordion
+                {catalog?.docSets.map((ds, n) => <VersionsAccordion
                     docSet={ds}
                     n={n}
                     catalog={catalog}

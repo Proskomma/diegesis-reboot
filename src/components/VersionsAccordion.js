@@ -19,8 +19,7 @@ export default function VersionsAccordion({docSet, n, catalog, cClick, navState}
                                 <IonLabel color="tertiary" class="accordionLabel">{d.toc3 || d.toc2 || d.h || d.toc}</IonLabel>
                             </IonItem>
                             <IonText slot="content">
-                                {catalog.docSets[n].documents[n2].cvNumbers
-                                    .map((c1) => c1.chapter)
+                                {Object.keys(catalog.docSets[n].documents[n2].versesByChapters)
                                     .map((c3, n3) => (
                                         <IonButton
                                             key={n3}
