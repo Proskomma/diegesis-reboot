@@ -57,12 +57,11 @@ const App = () => {
     }, [pkState.proskomma]);
 
     const {catalog} = useCatalog({
-        proskomma: pkState.proskomma,
-        stateId: pkState.stateId,
+        ...pkState,
         verbose: true,
         cv: true,
     });
-    
+
     return (
         <IonApp>
             <AppLangProvider value={appLanguage}>
