@@ -6,9 +6,9 @@ import BrowseBook from "../pages/BrowseBook/BrowseBook";
 import i18n from '../lib/i18n';
 import AppLangContext from "../contexts/AppLang";
 
+
 export default function Browse({pkState, navState, catalog}) {
     const appLang = useContext(AppLangContext);
-
     const [showPassage, setShowPassage] = useState(false);
 
  return <>
@@ -31,5 +31,4 @@ export default function Browse({pkState, navState, catalog}) {
 Browse.propTypes = {
     pkState: PropTypes.object.isRequired,
     navState: PropTypes.object.isRequired,
-    catalog: PropTypes.object.isRequired,
 };

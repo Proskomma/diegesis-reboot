@@ -7,9 +7,8 @@ import i18n from '../lib/i18n';
 import AppLangContext from "../contexts/AppLang";
 
 export default function SideMenuSearch({pkState, navState, setNavState}) {
-
+    
     const appLang = useContext(AppLangContext);
-
     const [searchText, setSearchText] = useState('');
     const [displayMode, setDisplayMode] = useState(false);
 
