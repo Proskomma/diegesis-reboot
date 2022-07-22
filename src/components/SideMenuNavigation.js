@@ -6,12 +6,10 @@ import {
 } from "@ionic/react";
 import { menuController } from "@ionic/core/components";
 import VersionsAccordion from "./VersionsAccordion";
-import React, { useContext, useEffect } from "react";
+import React, { useContext} from "react";
 import PropTypes from "prop-types";
 import i18n from "../lib/i18n";
 import AppLangContext from "../contexts/AppLang";
-import AppCatalogueContext from "../contexts/AppCatalogue";
-import { useCatalog } from "proskomma-react-hooks";
 
 
 export default function SideMenuNavigation({
@@ -68,4 +66,5 @@ export default function SideMenuNavigation({
 SideMenuNavigation.propTypes = {
   navState: PropTypes.object.isRequired,
   setNavState: PropTypes.func.isRequired,
+  catalog: PropTypes.object.isRequired,
 };

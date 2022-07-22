@@ -31,4 +31,5 @@ export default function Browse({pkState, navState, catalog}) {
 Browse.propTypes = {
     pkState: PropTypes.object.isRequired,
     navState: PropTypes.object.isRequired,
+    catalog : PropTypes.object.isRequired,
 };
