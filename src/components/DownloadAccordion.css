@@ -1,0 +1,4 @@
+.accordionLabel { font-weight: normal;  --color: red;}
+.bookCodeLabel {font-weight: bold;}
+.secondaryLabel {padding-left: 2em; font-style: italic;}
+ion-accordion.accordion-expanded ion-item[slot="header"] {--background: #efefef;}
