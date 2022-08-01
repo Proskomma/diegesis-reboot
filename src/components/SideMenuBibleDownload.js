@@ -7,6 +7,7 @@ import {
   IonText,
   IonButton,
   IonIcon,
+  IonContent,
 } from "@ionic/react";
 import React, { useEffect, useState } from "react";
 import { gql, useQuery as uQ } from "@apollo/client";
@@ -45,19 +46,18 @@ export default function SideMenuBibleDownload({ catalog, pkState }) {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <IonList>
-      <IonItem>
+    
+      <IonItem class="IonAcordionSizePanel">
+        <IonContent fullscreen="true">
         <IonAccordionGroup expand="inset">
           {data.orgs.map((org) => {
             return org.localTranslations.map((lT) => {
-              console.log(`${org.name}/${lT.languageCode}_${lT.abbreviation}`)
               const inIt = docSets.has(`${org.name}/${lT.languageCode}_${lT.abbreviation}`);
-              console.log(inIt);
               return(
                 <IonAccordion key={lT.name}>
-                  <IonItem slot="header">
-                    <IonLabel class="accordionLabel">
-                      {lT.abbreviation}
+                  <IonItem slot="header" >
+                    <IonLabel>
+                      {`${lT.abbreviation}`}
                     </IonLabel>
                   </IonItem>
 
@@ -118,8 +118,10 @@ export default function SideMenuBibleDownload({ catalog, pkState }) {
             });
           })}
         </IonAccordionGroup>
+        </IonContent>
       </IonItem>
-    </IonList>
+      
+      
   );
 }
 SideMenuBibleDownload.propTypes = {

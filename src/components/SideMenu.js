@@ -67,7 +67,7 @@ export default function SideMenu({
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent fullscreen="true">
         {showAppLang && (
           <AppLangOptions
             appLanguage={appLanguage}

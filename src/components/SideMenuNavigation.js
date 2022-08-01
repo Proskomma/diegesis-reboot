@@ -3,6 +3,7 @@ import {
   IonList,
   IonListHeader,
   IonItem,
+  IonContent,
 } from "@ionic/react";
 import { menuController } from "@ionic/core/components";
 import VersionsAccordion from "./VersionsAccordion";
@@ -44,7 +45,9 @@ export default function SideMenuNavigation({
         appLang,
         "books_in"
       )} ${catalog.nDocSets} ${i18n(appLang, "bibles")}`}</IonListHeader>
-      <IonItem>
+      
+      <IonItem class="IonAcordionSizePanel2">
+      <IonContent fullscreen="true">
         <IonAccordionGroup expand="inset" value={navState.docSetId}>
           {catalog?.docSets?.map((ds, n) => (
             <VersionsAccordion
@@ -58,6 +61,7 @@ export default function SideMenuNavigation({
             />
           ))}
         </IonAccordionGroup>
+        </IonContent>
       </IonItem>
     </IonList>
   );
