@@ -21,6 +21,16 @@ let queryStringPassage1 = `{
         ) {
           scopeLabels
           text
+          tokens {
+            subType
+            payload
+            scopes(
+              startsWith:[
+                "attribute/spanWithAtts/w/"
+                "attribute/milestone/zaln/"
+              ]
+            )
+          }
         }
       }
       matches: enumRegexIndexesForString (enumType:"wordLike" searchRegex:"(%Jesus%)") { matched }
@@ -37,6 +47,16 @@ let queryStringPassagesByBookCodes1 = `{
             blocks(withMatchingChars: ["""%Jesus%"""]) {
             text
             scopeLabels
+            tokens {
+              subType
+              payload
+              scopes(
+                startsWith:[
+                  "attribute/spanWithAtts/w/"
+                  "attribute/milestone/zaln/"
+                ]
+              )
+            }
             }
             }
         }

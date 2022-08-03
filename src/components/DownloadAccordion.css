@@ -1,8 +1,11 @@
 .accordionLabel { font-weight: normal;  --color: red;}
 .bookCodeLabel {font-weight: bold;}
 .secondaryLabel {padding-left: 2em; font-style: italic;}
-
-
+.iontext1 {background-color : rgb(163, 203, 240)}
+.iontext0 {background-color : rgba(163, 203, 240, 0)}
+.ionpopover  {
+    --background: rgba(40, 173, 218, 0);
+    --backdrop-opacity: 0;}
 .IonAcordionSizePanel {
     --min-height: 550px;
 }

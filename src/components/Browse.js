@@ -9,7 +9,7 @@ import AppLangContext from "../contexts/AppLang";
 
 export default function Browse({pkState, navState, catalog}) {
     const appLang = useContext(AppLangContext);
-    const [showPassage, setShowPassage] = useState(false);
+    const [showPassage, setShowPassage] = useState(true);
 
  return <>
     <IonHeader>
@@ -21,9 +21,7 @@ export default function Browse({pkState, navState, catalog}) {
         </IonToolbar>
     </IonHeader>
     <IonContent id="main"> 
-        { showPassage ? <BrowsePassage pkState={pkState} navState={navState} /> : <BrowseBook pkState={pkState} navState={navState} catalog={catalog} />
-
-        }
+        <BrowsePassage pkState={pkState} navState={navState} /> :
     </IonContent>
  </>
 }

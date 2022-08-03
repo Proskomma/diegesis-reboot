@@ -21,6 +21,9 @@ import {
 } from "./Query";
 import lightRegexCode from "./regex";
 import "./DownloadAccordion.css";
+
+
+
 export default function SideMenuSearch({ pkState, navState, setNavState }) {
   const appLang = useContext(AppLangContext);
   const [displayMode, setDisplayMode] = useState(false);
@@ -143,8 +146,9 @@ export default function SideMenuSearch({ pkState, navState, setNavState }) {
         .gqlQuerySync(queryStringPassage)
         .data.docSet.document.mainSequence.blocks.map((cM) => {
           const a = makeReference(bookCode, cM.scopeLabels, displayMode);
+          const c = cM.tokens
           const b = cM.text;
-          const element = { text: b, reference: a };
+          const element = { text: b, reference: a, tokens: c};
           data2.push(element);
         });
     } else {
@@ -152,8 +156,9 @@ export default function SideMenuSearch({ pkState, navState, setNavState }) {
         .gqlQuerySync(queryStringPassage)
         .data.docSet.document.cvMatching.map((cM) => {
           const a = makeReference(bookCode, cM.scopeLabels, displayMode);
+          const c = cM.tokens
           const b = cM.text;
-          const element = { text: b, reference: a };
+          const element = { text: b, reference: a, tokens: c };
           data2.push(element);
         });
     }

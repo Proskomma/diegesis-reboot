@@ -19,9 +19,7 @@ export default function SideMenuBibleDownload({ catalog, pkState }) {
   const [docSets, setDocSet] = useState(new Set());
   useEffect(() =>{
   setDocSet(new Set())
-  catalog?.docSets.map(dS => {docSets.add(dS.id)})
-  console.log(docSets)
-  console.log(catalog)},[pkState])
+  catalog?.docSets.map(dS => {docSets.add(dS.id)})},[pkState])
   catalog?.docSets.map(dS => {docSets.add(dS.id)})
 
   const { loading, error, data } = uQ(
@@ -51,10 +49,10 @@ export default function SideMenuBibleDownload({ catalog, pkState }) {
         <IonContent fullscreen="true">
         <IonAccordionGroup expand="inset">
           {data.orgs.map((org) => {
-            return org.localTranslations.map((lT) => {
+            return org.localTranslations.map((lT,id) => {
               const inIt = docSets.has(`${org.name}/${lT.languageCode}_${lT.abbreviation}`);
               return(
-                <IonAccordion key={lT.name}>
+                <IonAccordion key={id}>
                   <IonItem slot="header" >
                     <IonLabel>
                       {`${lT.abbreviation}`}

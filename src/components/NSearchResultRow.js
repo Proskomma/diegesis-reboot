@@ -1,8 +1,9 @@
 import React from "react";
-import PropTypes, { element } from "prop-types";
+import PropTypes from "prop-types";
 import { menuController } from "@ionic/core/components";
 import { IonItem, IonText } from "@ionic/react";
 import { makeTextReference } from "./makeTexteReference";
+import HightLightWords from "./HightLightWords";
 
 export default function NSearchResultRow({
   p,
@@ -11,6 +12,7 @@ export default function NSearchResultRow({
   setNavState,
   wordMatched,
 }) {
+  
   const searchReference = async (reference) => {
     setNavState({
       ...navState,
@@ -20,28 +22,6 @@ export default function NSearchResultRow({
     });
     await menuController.close();
   };
-  function makeSearchTextPop(text, words) {
-    let truc = [text];
-    words.map((word) => {
-     
-      let br = [];
-      truc.map((textes) => {
-        let ar = [];
-        if (!words.includes(textes)) {
-          textes.split(word).map(t => ar.push(t));
-          ar.map((a, id) => {
-            br.push(a);
-            if (id !== ar.length - 1) {
-              br.push(word);
-            }
-          });
-        }
-        else{br.push(textes)}
-      });
-      truc = br;
-    });
-    return truc;
-  }
 
   return (
     <IonItem key={n}>
@@ -53,12 +33,15 @@ export default function NSearchResultRow({
         >
           {makeTextReference(p.reference)}
         </IonText>{" "}
-        {makeSearchTextPop(p.text, wordMatched).map((text) => {
-          if (!wordMatched.includes(text)) {
-            return <IonText>{text}</IonText>;
-          } else {
-            return <IonText color="tertiary">{text}</IonText>;
-          }
+        {p.tokens.map((element, id) => {
+          const a = parseInt(`${n}${id}${id}${n}`);
+          return (
+            <HightLightWords
+              keys={a}
+              element={element}
+              wordMatched={wordMatched}
+            />
+          );
         })}
       </IonText>
     </IonItem>
@@ -71,4 +54,5 @@ NSearchResultRow.propTypes = {
   navState: PropTypes.object.isRequired,
   setNavState: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
+  wordMatched : PropTypes.array.isRequired,
 };
