@@ -8,7 +8,7 @@ export default function VersionsAccordion({docSet, n, catalog, cClick, navState}
     return (
         <IonAccordion key={n} value={docSet.id}>
             <IonItem slot="header">
-                <IonLabel class="accordionLabel" color="secondary">{docSet.id}</IonLabel>
+                <IonLabel class="accordionLabel" color="secondary">{docSet.tags.title || docSet.id}</IonLabel>
             </IonItem>
 
             <IonList slot="content">

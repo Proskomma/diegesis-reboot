@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { IonApp, setupIonicReact } from "@ionic/react";
 import { useProskomma, useCatalog } from "proskomma-react-hooks";
-import { nt_ebible_4book as frozen } from "proskomma-frozen-archives";
-import { thaw } from "proskomma-freeze";
 
 import "./App.css";
 
@@ -27,7 +25,7 @@ import "./theme/variables.css";
 import { useState } from "react";
 import SideMenu from "./components/SideMenu";
 import Browse from "./components/Browse";
-
+import succinct from "./defaultBible/engkjvcpb/succinct.json"; 
 import { AppLangProvider } from "./contexts/AppLang";
 
 
@@ -40,23 +38,21 @@ const App = () => {
   });
 
   const initialState = {
-    docSetId: "xyz-fra_lsg",
-    bookCode: "3JN",
+    docSetId: "eBible/eng_engkjvcpb",
+    bookCode: "LUK",
     chapter: 1,
     verse: 1,
   };
   const verbose = true;
   const [navState, setNavState] = useState(initialState);
   const [appLanguage, setAppLanguage] = useState("en");
-
+  console.log(navState)
   const pkState = useProskomma({ verbose });
 
   useEffect(() => {
-    thaw(pkState.proskomma, frozen).then(() => {
-      console.log("thawed");
-      pkState.newStateId();
-    });
-  }, [pkState.proskomma]);
+    pkState.proskomma.loadSuccinctDocSet(succinct);
+    pkState.newStateId();
+  },[]);
 
   const catalog = useCatalog({
     ...pkState,
@@ -64,6 +60,7 @@ const App = () => {
     cv: true,
   }).catalog;
 
+  
   return (
     <ApolloProvider client={client}>
       <IonApp>
@@ -75,8 +72,9 @@ const App = () => {
                 setNavState={setNavState}
                 appLanguage={appLanguage}
                 setAppLanguage={setAppLanguage}
+                client={client}
               />
-              <Browse pkState={pkState} navState={navState} catalog={catalog} />
+              <Browse  pkState={pkState} navState={navState} catalog={catalog} />
         </AppLangProvider>
       </IonApp>
     </ApolloProvider>

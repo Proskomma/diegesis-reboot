@@ -32,6 +32,7 @@ export default function SideMenu({
   setNavState,
   appLanguage,
   setAppLanguage,
+  client
 }) {
 
   const [selected, setSelected] = useState("navigation");
@@ -89,7 +90,7 @@ export default function SideMenu({
           />
         )}
         {selected === "download" && (
-          <SideMenuBibleDownload pkState={pkState} catalog={catalog} />
+          <SideMenuBibleDownload client={client} pkState={pkState} catalog={catalog} />
         )}
       </IonContent>
     </IonMenu>
@@ -103,4 +104,5 @@ SideMenu.propTypes = {
   setNavState: PropTypes.func.isRequired,
   appLanguage: PropTypes.string.isRequired,
   setAppLanguage: PropTypes.func.isRequired,
+  client : PropTypes.object.isRequired
 };

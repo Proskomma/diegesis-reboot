@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import {IonList, IonItem, IonText} from '@ionic/react';
 
-export default function PassageByVersion({docSet, keyPrefix}) {
+export default function PassageByVersion({docSet,it}) {
     const sLO = (sL) => {
         const ret = {};
         sL.forEach(l => {
@@ -12,17 +12,16 @@ export default function PassageByVersion({docSet, keyPrefix}) {
         return ret;
     };
 
-    return <div key={keyPrefix}>
-
+    return <div key={it}>
         {docSet.document?.cv.map(
-            (v, n2) => <IonList key={`${keyPrefix}-${n2}`}>
-
+            (v, n2) => {
+            return(<IonList key={`${it}-${n2}`} id={`${it}-${n2}`}>     
                 <IonItem>
                     <IonText>
                         <IonText class="cv">{`${sLO(v.scopeLabels)["chapter"]}:${sLO(v.scopeLabels)["verses"]}`}</IonText> <IonText>{v.text}</IonText>
                     </IonText>
                 </IonItem>
-            </IonList>
+            </IonList>)}
         )
         }
     </div>
@@ -30,5 +29,5 @@ export default function PassageByVersion({docSet, keyPrefix}) {
 
 PassageByVersion.propTypes = {
     docSet: PropTypes.object.isRequired,
-    keyPrefix: PropTypes.number.isRequired,
+    it: PropTypes.number.isRequired,
 };

@@ -12,7 +12,6 @@ export default function NSearchResultRow({
   setNavState,
   wordMatched,
 }) {
-  
   const searchReference = async (reference) => {
     setNavState({
       ...navState,
@@ -54,5 +53,5 @@ NSearchResultRow.propTypes = {
   navState: PropTypes.object.isRequired,
   setNavState: PropTypes.func.isRequired,
   searchText: PropTypes.string.isRequired,
-  wordMatched : PropTypes.array.isRequired,
+  wordMatched: PropTypes.array.isRequired,
 };
