@@ -42,12 +42,12 @@ export default function SideMenuSearch({ pkState, navState, setNavState }) {
 
   const numberOfVerse = 10;
 
-  
+  let queryStringBookSet = queryStringBookSet1;
   const queryStringPass = queryStringPassage1;
   const queryStringPassagesByBookCodes = queryStringPassagesByBookCodes1;
   console.log(ignored)
   useEffect(() => {
-    let queryStringBookSet = queryStringBookSet1;
+    
     if (search) {
       setData([]);
       setDataDisplayPointer(0);
@@ -57,7 +57,7 @@ export default function SideMenuSearch({ pkState, navState, setNavState }) {
       setSearchText(textModification(lightRegexCode(displaySearchText)));
       if (searchText !== "" && search) {
         queryStringBookSet = queryStringBookSet.replace(
-          "[%Jesus%]",
+          "[%searchText%]",
           searchText
         );
 
@@ -81,7 +81,7 @@ export default function SideMenuSearch({ pkState, navState, setNavState }) {
         setActualBookCode(bookCodesArray);
         queryStringBookSet = queryStringBookSet.replace(
           searchText,
-          "[%Jesus%]"
+          "[%searchText%]"
         );
       }
       setSearch(false);
@@ -147,10 +147,10 @@ export default function SideMenuSearch({ pkState, navState, setNavState }) {
         `"${bookCode}"`
       );
       // when adding LightReg replace searchText.split(" ") with words
-      queryStringPassage = queryStringPassage.replace("[%Jesus%]", searchText);
+      queryStringPassage = queryStringPassage.replace("[%searchText%]", searchText);
 
-      queryStringPassage = queryStringPassage.replace("%Jesus%", matchedString);
-      queryStringPassage = queryStringPassage.replace("%Jesus%", matchedString);
+      queryStringPassage = queryStringPassage.replace("%searchText%", matchedString);
+      queryStringPassage = queryStringPassage.replace("%searchText%", matchedString);
 
       pkState.proskomma
         .gqlQuerySync(queryStringPassage)
