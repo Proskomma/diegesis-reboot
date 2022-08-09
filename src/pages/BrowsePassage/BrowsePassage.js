@@ -129,4 +129,5 @@ export default function BrowsePassage({ pkState, navState,it}) {
 BrowsePassage.propTypes = {
   pkState: PropTypes.object.isRequired,
   navState: PropTypes.object.isRequired,
+  it : PropTypes.number.isRequired
 };

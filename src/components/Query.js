@@ -2,7 +2,7 @@ let queryStringBookSet1 = `{  docSets{
 id
 documents(sortedBy:"paratext" 
         allChars: false 
-        withMatchingChars: [%Jesus%]
+        withMatchingChars: [%searchText%]
         allScopes: true ) {
         bookCode: header(id:"bookCode")          }
     }
@@ -17,7 +17,7 @@ let queryStringPassage1 = `{
         cvMatching(
           allChars:false
           allScopes:true
-           withMatchingChars: [%Jesus%]
+           withMatchingChars: [%searchText%]
         ) {
           scopeLabels
           text
@@ -33,7 +33,7 @@ let queryStringPassage1 = `{
           }
         }
       }
-      matches: enumRegexIndexesForString (enumType:"wordLike" searchRegex:"(%Jesus%)") { matched }
+      matches: enumRegexIndexesForString (enumType:"wordLike" searchRegex:"(%searchText%)") { matched }
     }
   }`;
 
@@ -44,7 +44,7 @@ let queryStringPassagesByBookCodes1 = `{
         bookCode: header(id: "bookCode")
         title: header(id: "toc2")
         mainSequence {
-            blocks(withMatchingChars: ["""%Jesus%"""]) {
+            blocks(withMatchingChars: ["""%searchText%"""]) {
             text
             scopeLabels
             tokens {
@@ -60,7 +60,7 @@ let queryStringPassagesByBookCodes1 = `{
             }
             }
         }
-      matches: enumRegexIndexesForString (enumType:"wordLike" searchRegex:"(%Jesus%)") { matched }
+      matches: enumRegexIndexesForString (enumType:"wordLike" searchRegex:"(%searchText%)") { matched }
     }
 }`;
 export { queryStringBookSet1, queryStringPassage1, queryStringPassagesByBookCodes1};

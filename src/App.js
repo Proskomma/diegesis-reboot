@@ -38,7 +38,7 @@ const App = () => {
   });
 
   const initialState = {
-    docSetId: "eBible/eng_engkjvcpb",
+    docSetId: "eBible/eng_KJVluk",
     bookCode: "LUK",
     chapter: 1,
     verse: 1,

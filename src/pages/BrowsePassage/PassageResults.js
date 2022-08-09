@@ -74,4 +74,5 @@ PassageResults.propTypes = {
   displayFlags: PropTypes.object.isRequired,
   displayMode: PropTypes.string.isRequired,
   navState: PropTypes.object.isRequired,
+  it: PropTypes.number.isRequired,
 };

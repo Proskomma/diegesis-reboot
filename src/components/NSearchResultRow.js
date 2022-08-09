@@ -36,6 +36,7 @@ export default function NSearchResultRow({
           const a = parseInt(`${n}${id}${id}${n}`);
           return (
             <HightLightWords
+              key={a}
               keys={a}
               element={element}
               wordMatched={wordMatched}
@@ -52,6 +53,5 @@ NSearchResultRow.propTypes = {
   n: PropTypes.number.isRequired,
   navState: PropTypes.object.isRequired,
   setNavState: PropTypes.func.isRequired,
-  searchText: PropTypes.string.isRequired,
   wordMatched: PropTypes.array.isRequired,
 };

@@ -42,11 +42,12 @@ export default function SideMenuSearch({ pkState, navState, setNavState }) {
 
   const numberOfVerse = 10;
 
-  let queryStringBookSet = queryStringBookSet1;
+  
   const queryStringPass = queryStringPassage1;
   const queryStringPassagesByBookCodes = queryStringPassagesByBookCodes1;
   console.log(ignored)
   useEffect(() => {
+    let queryStringBookSet = queryStringBookSet1;
     if (search) {
       setData([]);
       setDataDisplayPointer(0);
